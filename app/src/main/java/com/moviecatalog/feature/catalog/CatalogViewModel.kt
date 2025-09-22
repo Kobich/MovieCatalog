@@ -12,11 +12,22 @@ enum class Category { Trending, Popular, TopRated }
 class CatalogViewModel: ViewModel() {
 
     private val repo = FakeMovieRepository()
-
     private val _movies = MutableStateFlow<List<Movie>>(emptyList())
     val movies: StateFlow<List<Movie>> = _movies.asStateFlow()
 
-    fun loadCategory(category: Category) {
+    private val _selectedCategory = MutableStateFlow(Category.Trending)
+    val selectedCategory: StateFlow<Category> = _selectedCategory.asStateFlow()
+
+    init {
+        loadCategory(Category.Trending)
+    }
+
+    fun updateCategory(category: Category) {
+        _selectedCategory.value = category
+        loadCategory(category)
+    }
+
+    private fun loadCategory(category: Category) {
         _movies.value = when (category) {
             Category.Trending -> repo.getTrending()
             Category.Popular -> repo.getPopular()

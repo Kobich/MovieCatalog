@@ -18,12 +18,8 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,51 +39,53 @@ fun CatalogScreen(
     navController: NavHostController,
     vm: CatalogViewModel = viewModel(),
 ) {
-
-    var selectedTab by rememberSaveable { mutableIntStateOf(0) }
     val tabs = listOf("Trending", "Popular", "Top Rated")
-
     val movies by vm.movies.collectAsState()
-
-    LaunchedEffect(selectedTab) {
-        vm.loadCategory(
-            when (selectedTab) {
-                0 -> Category.Trending
-                1 -> Category.Popular
-                else -> Category.TopRated
-            }
-        )
+    val selectedCategory by vm.selectedCategory.collectAsState()
+    val selectedTabIndex = when (selectedCategory) {
+        Category.Trending -> 0
+        Category.Popular -> 1
+        Category.TopRated -> 2
     }
 
-
-    Scaffold { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-        ) {
+    Scaffold(
+        bottomBar = {
             TabRow(
-                selectedTabIndex = selectedTab,
+                selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary)
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primary)
+                    .fillMaxWidth()
             ) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
                         text = { Text(title) },
-                        selected = selectedTab == index,
-                        onClick = { selectedTab = index }
+                        selected = selectedTabIndex == index,
+                        onClick = {
+                            val category = when (index) {
+                                0 -> Category.Trending
+                                1 -> Category.Popular
+                                else -> Category.TopRated
+                            }
+                            vm.updateCategory(category)
+                        },
+                        selectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        unselectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f)
                     )
                 }
             }
-
-            MovieCatalogList(
-                items = movies,
-                onMovieClick = { navController.navigate("details") },
-            )
         }
+    ) { innerPadding ->
+        MovieCatalogList(
+            items = movies,
+            onMovieClick = { navController.navigate("details") },
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+        )
     }
 }
-
 
 @Composable
 fun MovieCatalogCard(movie: Movie, onClick: () -> Unit) {
@@ -125,12 +123,13 @@ fun MovieCatalogCard(movie: Movie, onClick: () -> Unit) {
 fun MovieCatalogList(
     items: List<Movie>,
     onMovieClick: (Movie) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
         verticalItemSpacing = 4.dp,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         content = {
             items(items.size) { index ->
                 val movie = items[index]
