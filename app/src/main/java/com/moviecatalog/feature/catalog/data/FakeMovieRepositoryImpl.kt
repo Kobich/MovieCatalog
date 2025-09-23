@@ -1,22 +1,23 @@
 package com.moviecatalog.feature.catalog.data
 
 import com.moviecatalog.R
-import com.moviecatalog.feature.catalog.models.Movie
+import com.moviecatalog.feature.catalog.domain.MovieRepository
+import com.moviecatalog.feature.catalog.domain.models.Movie
 
-class FakeMovieRepository {
+class FakeMovieRepositoryImpl : MovieRepository {
 
-    fun getTrending(): List<Movie> = listOf(
+    override fun getTrending(): List<Movie> = listOf(
         Movie(1, "Fury", R.drawable.poster_fury),
         Movie(2, "Leon", R.drawable.poster_lion),
         Movie(3, "Akira", R.drawable.poster_akira),
     )
 
-    fun getPopular(): List<Movie> = listOf(
+    override fun getPopular(): List<Movie> = listOf(
         Movie(4, "Legend", R.drawable.poster_legend),
         Movie(5, "Bladerunner 2049", R.drawable.poster_bladerunner2049),
     )
 
-    fun getTopRated(): List<Movie> = listOf(
+    override fun getTopRated(): List<Movie> = listOf(
         Movie(6, "Lord of the rings", R.drawable.poster_lordofthering),
         Movie(7, "Mad Max", R.drawable.poster_madmax),
         Movie(8, "Pilp fiction", R.drawable.poster_pilpfiction),

@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.catalog
+package com.moviecatalog.feature.catalog.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,8 +18,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,21 +25,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.feature.catalog.models.Movie
+import com.moviecatalog.feature.catalog.domain.models.Category
+import com.moviecatalog.feature.catalog.domain.models.Movie
+import com.moviecatalog.feature.catalog.ui.entity.MovieCallbacks
+import com.moviecatalog.feature.catalog.ui.entity.MovieUiState
 
 @Composable
-fun CatalogScreen(
-    navController: NavHostController,
-    vm: CatalogViewModel = viewModel(),
+fun CatalogScreenView(
+    uiState: MovieUiState,
+    callbacks: MovieCallbacks,
 ) {
     val tabs = listOf("Trending", "Popular", "Top Rated")
-    val movies by vm.movies.collectAsState()
-    val selectedCategory by vm.selectedCategory.collectAsState()
+
+    val movies = uiState.movies
+    val selectedCategory = uiState.selectedCategory
+
     val selectedTabIndex = when (selectedCategory) {
         Category.Trending -> 0
         Category.Popular -> 1
@@ -54,7 +56,7 @@ fun CatalogScreen(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier
+                modifier = Modifier.Companion
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth()
             ) {
@@ -68,10 +70,12 @@ fun CatalogScreen(
                                 1 -> Category.Popular
                                 else -> Category.TopRated
                             }
-                            vm.updateCategory(category)
+                            callbacks.onCategoryChange(category)
                         },
                         selectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                        unselectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f)
+                        unselectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(
+                            alpha = 0.6f
+                        )
                     )
                 }
             }
@@ -79,13 +83,15 @@ fun CatalogScreen(
     ) { innerPadding ->
         MovieCatalogList(
             items = movies,
-            onMovieClick = { navController.navigate("details") },
-            modifier = Modifier
+            onMovieClick = callbacks.onMovieClick,
+            modifier = Modifier.Companion
                 .padding(innerPadding)
                 .fillMaxSize()
         )
     }
 }
+
+
 
 @Composable
 fun MovieCatalogCard(movie: Movie, onClick: () -> Unit) {
@@ -136,5 +142,24 @@ fun MovieCatalogList(
                 MovieCatalogCard(movie, onClick = { onMovieClick(movie) })
             }
         }
+    )
+}
+
+@Preview
+@Composable
+fun PreviewRenderMovieScreen() {
+    CatalogScreenView(
+        uiState = MovieUiState(
+            movies = listOf(
+                Movie(1, "Fury", R.drawable.poster_fury),
+                Movie(2, "Leon", R.drawable.poster_lion),
+                Movie(3, "Akira", R.drawable.poster_akira),
+            ),
+            selectedCategory = Category.Trending,
+        ),
+        callbacks = MovieCallbacks(
+            onMovieClick = {},
+            onCategoryChange = {},
+        )
     )
 }

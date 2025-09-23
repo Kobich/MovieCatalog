@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
-import com.moviecatalog.feature.catalog.CatalogScreen
+import com.moviecatalog.feature.catalog.ui.CatalogScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
