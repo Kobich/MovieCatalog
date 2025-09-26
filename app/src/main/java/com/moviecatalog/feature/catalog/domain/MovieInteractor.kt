@@ -1,8 +1,8 @@
 package com.moviecatalog.feature.catalog.domain
 
-import com.moviecatalog.feature.catalog.domain.models.Category
-import com.moviecatalog.feature.catalog.domain.models.Movie
-import com.moviecatalog.feature.catalog.domain.models.MovieState
+import com.moviecatalog.feature.catalog.domain.entity.Category
+import com.moviecatalog.feature.catalog.domain.entity.Movie
+import com.moviecatalog.feature.catalog.domain.entity.MovieState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class MovieInteractor(
@@ -22,6 +22,14 @@ class MovieInteractor(
     fun updateCategory(category: Category) {
         state.value = MovieState(getMovies(category), category)
     }
+    fun getMovieById(id: Int): Movie? {
+        return Category.entries
+            .asSequence()
+            .map { getMovies(it) }
+            .flatten()
+            .find { it.id == id }
+    }
+
 
     fun init() {
         updateCategory(Category.Trending)

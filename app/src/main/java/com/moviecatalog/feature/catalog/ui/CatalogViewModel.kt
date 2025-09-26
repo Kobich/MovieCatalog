@@ -3,7 +3,7 @@ package com.moviecatalog.feature.catalog.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moviecatalog.di.Di
-import com.moviecatalog.feature.catalog.domain.models.Category
+import com.moviecatalog.feature.catalog.domain.entity.Category
 import com.moviecatalog.feature.catalog.ui.entity.MovieUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

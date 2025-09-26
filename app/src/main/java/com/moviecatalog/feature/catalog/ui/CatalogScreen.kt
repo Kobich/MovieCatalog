@@ -13,7 +13,7 @@ fun CatalogScreen(
 ) {
     val uiState = vm.uiState.collectAsState()
     val callbacks = MovieCallbacks(
-        onMovieClick = { movie -> navController.navigate("details") },
+        onMovieClick = { movie -> navController.navigate("details/${movie.id}") },
         onCategoryChange = { category -> vm.updateCategory(category) },
     )
     CatalogScreenView(uiState.value, callbacks)

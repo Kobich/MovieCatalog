@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -29,8 +30,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.feature.catalog.domain.models.Category
-import com.moviecatalog.feature.catalog.domain.models.Movie
+import com.moviecatalog.feature.catalog.domain.entity.Category
+import com.moviecatalog.feature.catalog.domain.entity.Movie
 import com.moviecatalog.feature.catalog.ui.entity.MovieCallbacks
 import com.moviecatalog.feature.catalog.ui.entity.MovieUiState
 
@@ -52,6 +53,7 @@ fun CatalogScreenView(
 
     Scaffold(
         bottomBar = {
+
             TabRow(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -59,6 +61,7 @@ fun CatalogScreenView(
                 modifier = Modifier.Companion
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth()
+                    .navigationBarsPadding()
             ) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
@@ -151,9 +154,9 @@ fun PreviewRenderMovieScreen() {
     CatalogScreenView(
         uiState = MovieUiState(
             movies = listOf(
-                Movie(1, "Fury", R.drawable.poster_fury),
-                Movie(2, "Leon", R.drawable.poster_lion),
-                Movie(3, "Akira", R.drawable.poster_akira),
+                Movie(1, "Fury", R.drawable.poster_fury, "", 0.0, emptyList()),
+                Movie(2, "Leon", R.drawable.poster_lion, "", 0.0, emptyList()),
+                Movie(3, "Akira", R.drawable.poster_akira, "", 0.0, emptyList()),
             ),
             selectedCategory = Category.Trending,
         ),
