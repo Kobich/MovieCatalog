@@ -49,20 +49,20 @@ fun DetailsScreen(
         vm.setMovieId(movieId)
     }
 
-    val movie by vm.movie.collectAsState()
-
-    val callbacks = DetailsCallbacks(
-        onPosterClick = {
-            // TODO:
-        },
-        onBackClick = {
-            navController.popBackStack()
-        }
-    )
-
-    movie?.let {
-        DetailsScreenView(it, callbacks)
-    } ?: Text("Загрузка...")
+//    val movie by vm.movie.collectAsState()
+//
+//    val callbacks = DetailsCallbacks(
+//        onPosterClick = {
+//            // TODO:
+//        },
+//        onBackClick = {
+//            navController.popBackStack()
+//        }
+//    )
+//
+//    movie?.let {
+//        DetailsScreenView(it, callbacks)
+//    } ?: Text("Загрузка...")
 
 }
 

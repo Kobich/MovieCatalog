@@ -6,11 +6,11 @@ import com.moviecatalog.feature.movies.api.entity.Movie
 class MoviesDataInteractor(
     private val repo: MovieRepository
 ) {
-    fun getMovies(category: Category): List<Movie> {
+    suspend fun getMovies(category: Category): List<Movie> {
         return repo.getMovies(category)
     }
 
-    fun getMovieById(id: Int): Movie? {
+    suspend fun getMovieById(id: Int): Movie? {
         return repo.getMovieById(id)
     }
 }

@@ -4,15 +4,24 @@ import com.moviecatalog.feature.movies.api.entity.Movie
 import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Category
 import com.moviecatalog.feature.movies.impl.domain.MovieRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class MovieRepositoryImpl : MovieRepository {
 
-    override fun getMovies(category: Category): List<Movie> {
-        return movies.filter { category == it.category }
+    override suspend fun getMovies(category: Category): List<Movie> {
+        return withContext(Dispatchers.IO) {
+            delay(3000L)
+            movies.filter { category == it.category }
+        }
     }
 
-    override fun getMovieById(id: Int): Movie? {
-        return movies.find { it.id == id }
+    override suspend fun getMovieById(id: Int): Movie? {
+        return withContext(Dispatchers.IO) {
+            delay(3000L)
+            movies.find { it.id == id }
+        }
     }
 
     private val movies = listOf(

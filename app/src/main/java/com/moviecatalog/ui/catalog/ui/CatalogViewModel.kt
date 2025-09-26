@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moviecatalog.di.Di
 import com.moviecatalog.feature.movies.api.entity.Category
+import com.moviecatalog.ui.catalog.domain.entity.CatalogScreenState
+import com.moviecatalog.ui.catalog.ui.entity.CatalogScreenUiState
 import com.moviecatalog.ui.catalog.ui.entity.MovieUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,19 +14,14 @@ import kotlinx.coroutines.flow.stateIn
 
 class CatalogViewModel : ViewModel() {
 
-    private val interactor = Di.getMovieInteractor()
+    private val interactor = Di.getСatalogInteractor()
 
-    val uiState: StateFlow<MovieUiState> = interactor.state
-        .map {
-            MovieUiState(
-                movies = it.movies,
-                selectedCategory = it.selectedCategory
-            )
-        }
+    val uiState: StateFlow<CatalogScreenUiState> = interactor.state
+        .map { it.map() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-            initialValue = MovieUiState(),
+            initialValue = CatalogScreenUiState.Loading,
         )
 
     init {
@@ -33,5 +30,19 @@ class CatalogViewModel : ViewModel() {
 
     fun updateCategory(category: Category) {
         interactor.updateCategory(category)
+    }
+
+
+    private fun CatalogScreenState.map(): CatalogScreenUiState {
+        return when (this) {
+            is CatalogScreenState.Loading -> CatalogScreenUiState.Loading
+            is CatalogScreenState.Error -> CatalogScreenUiState.Error(message)
+            is CatalogScreenState.Success -> CatalogScreenUiState.Content(
+                MovieUiState(
+                    movies = this.movieState.movies,
+                    selectedCategory = this.movieState.selectedCategory
+                )
+            )
+        }
     }
 }
