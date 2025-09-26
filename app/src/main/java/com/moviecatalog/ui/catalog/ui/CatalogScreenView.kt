@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.catalog.ui
+package com.moviecatalog.ui.catalog.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,10 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.feature.catalog.domain.entity.Category
-import com.moviecatalog.feature.catalog.domain.entity.Movie
-import com.moviecatalog.feature.catalog.ui.entity.MovieCallbacks
-import com.moviecatalog.feature.catalog.ui.entity.MovieUiState
+import com.moviecatalog.feature.movies.api.entity.Category
+import com.moviecatalog.feature.movies.api.entity.Movie
+import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
+import com.moviecatalog.ui.catalog.ui.entity.MovieUiState
 
 @Composable
 fun CatalogScreenView(
@@ -87,7 +87,7 @@ fun CatalogScreenView(
         MovieCatalogList(
             items = movies,
             onMovieClick = callbacks.onMovieClick,
-            modifier = Modifier.Companion
+            modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
         )
@@ -154,9 +154,9 @@ fun PreviewRenderMovieScreen() {
     CatalogScreenView(
         uiState = MovieUiState(
             movies = listOf(
-                Movie(1, "Fury", R.drawable.poster_fury, "", 0.0, emptyList()),
-                Movie(2, "Leon", R.drawable.poster_lion, "", 0.0, emptyList()),
-                Movie(3, "Akira", R.drawable.poster_akira, "", 0.0, emptyList()),
+                Movie(1, "Fury", R.drawable.poster_fury, "", 0.0, emptyList(), category = Category.Popular),
+                Movie(2, "Leon", R.drawable.poster_lion, "", 0.0, emptyList(), category = Category.Popular),
+                Movie(3, "Akira", R.drawable.poster_akira, "", 0.0, emptyList(), category = Category.Popular),
             ),
             selectedCategory = Category.Trending,
         ),

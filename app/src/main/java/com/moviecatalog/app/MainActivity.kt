@@ -11,8 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
-import com.moviecatalog.feature.catalog.ui.CatalogScreen
-import com.moviecatalog.feature.details.ui.DetailsScreen
+import com.moviecatalog.ui.catalog.ui.CatalogScreen
+import com.moviecatalog.ui.details.ui.DetailsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

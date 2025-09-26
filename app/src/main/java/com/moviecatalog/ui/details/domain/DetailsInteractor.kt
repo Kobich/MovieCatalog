@@ -1,6 +1,6 @@
-package com.moviecatalog.feature.details.domain
+package com.moviecatalog.ui.details.domain
 
-import com.moviecatalog.feature.details.ui.entity.MovieDetailsUiState
+import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
 import kotlinx.coroutines.flow.StateFlow
 
 interface DetailsInteractor {

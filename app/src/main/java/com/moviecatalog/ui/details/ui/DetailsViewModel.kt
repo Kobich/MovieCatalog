@@ -1,9 +1,9 @@
-package com.moviecatalog.feature.details.ui
+package com.moviecatalog.ui.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moviecatalog.di.Di
-import com.moviecatalog.feature.catalog.domain.entity.Movie
+import com.moviecatalog.feature.movies.api.entity.Movie
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

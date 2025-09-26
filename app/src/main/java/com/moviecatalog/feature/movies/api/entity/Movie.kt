@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.catalog.domain.entity
+package com.moviecatalog.feature.movies.api.entity
 
 data class Movie(
     val id: Int,
@@ -6,6 +6,7 @@ data class Movie(
     val posterRes: Int,
     val description: String,
     val rating: Double,
-    val actors: List<String>
+    val actors: List<String>,
+    val category: Category,
 )
 
