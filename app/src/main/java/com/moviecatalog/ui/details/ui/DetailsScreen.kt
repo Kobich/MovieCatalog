@@ -37,6 +37,7 @@ import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Movie
 import com.moviecatalog.ui.details.ui.entity.DetailsCallbacks
 import com.moviecatalog.feature.movies.api.entity.Category
+import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
 
 
 @Composable
@@ -49,27 +50,24 @@ fun DetailsScreen(
         vm.setMovieId(movieId)
     }
 
-//    val movie by vm.movie.collectAsState()
-//
-//    val callbacks = DetailsCallbacks(
-//        onPosterClick = {
-//            // TODO:
-//        },
-//        onBackClick = {
-//            navController.popBackStack()
-//        }
-//    )
-//
-//    movie?.let {
-//        DetailsScreenView(it, callbacks)
-//    } ?: Text("Загрузка...")
+    val state by vm.uiState.collectAsState()
 
+    val callbacks = DetailsCallbacks(
+        onPosterClick = {
+            // TODO:
+        },
+        onBackClick = {
+            navController.popBackStack()
+        }
+    )
+
+    DetailsScreenView(uiState = state, callbacks = callbacks)
 }
 
 
 
 @Composable
-fun DetailsScreenView(
+fun DetailsContentView(
     movie: Movie,
     callbacks: DetailsCallbacks
 ) {
@@ -145,6 +143,41 @@ fun DetailsScreenView(
     }
 }
 
+@Composable
+fun DetailsScreenView(
+    uiState: MovieDetailsUiState,
+    callbacks: DetailsCallbacks,
+) {
+    when (uiState) {
+        is MovieDetailsUiState.Error -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Error: ${uiState.message}")
+            }
+        }
+        MovieDetailsUiState.Loading -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Loading...")
+            }
+        }
+        is MovieDetailsUiState.Content -> {
+            DetailsContentView(
+                movie = uiState.state,
+                callbacks = callbacks,
+            )
+        }
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
@@ -159,7 +192,7 @@ fun DetailsScreenPreview() {
         category = Category.Popular,
     )
 
-    DetailsScreenView(
+    DetailsContentView(
         movie = mockMovie,
         callbacks = DetailsCallbacks(
             onPosterClick = {},
