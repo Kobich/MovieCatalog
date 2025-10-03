@@ -1,15 +1,37 @@
+# Android / IntelliJ
+# IDE
 *.iml
-.gradle
+/.idea/
+/.kotlin/
+
+# Gradle
+.gradle/
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+
+# Build outputs
+/build/
+/app/build/
+/captures/
+
+# Native builds
+.externalNativeBuild/
+.cxx/
+
+# OS files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+Thumbs.db
+
+# Packages / artifacts
+*.apk
+*.ap_
+*.aab
+
+# Logs and dumps
+*.log
+*.hprof
+
+# Kotlin/Java
+/out/
+
+# Keep Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
