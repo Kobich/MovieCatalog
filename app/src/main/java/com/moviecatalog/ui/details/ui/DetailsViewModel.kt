@@ -2,7 +2,7 @@ package com.moviecatalog.ui.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.moviecatalog.di.Di
+import com.moviecatalog.ui.details.domain.DetailsInteractor
 import com.moviecatalog.ui.details.domain.DetailsScreenState
 import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
 import kotlinx.coroutines.flow.SharingStarted
@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-
-class DetailsViewModel : ViewModel() {
-    private val interactor = Di.getDetailsInteractor()
+class DetailsViewModel(
+    private val interactor: DetailsInteractor,
+) : ViewModel() {
 
     val uiState: StateFlow<MovieDetailsUiState> = interactor.state
         .map { it.map() }

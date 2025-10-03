@@ -12,14 +12,14 @@ class MovieRepositoryImpl : MovieRepository {
 
     override suspend fun getMovies(category: Category): List<Movie> {
         return withContext(Dispatchers.IO) {
-            delay(3000L)
+            delay(1000L)
             movies.filter { category == it.category }
         }
     }
 
     override suspend fun getMovieById(id: Int): Movie? {
         return withContext(Dispatchers.IO) {
-            delay(3000L)
+            delay(1000L)
             movies.find { it.id == id }
         }
     }

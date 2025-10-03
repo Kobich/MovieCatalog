@@ -2,14 +2,14 @@ package com.moviecatalog.ui.catalog.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
 
 @Composable
 fun CatalogScreen(
     navController: NavHostController,
-    vm: CatalogViewModel = viewModel(),
+    vm: CatalogViewModel = koinViewModel(),
 ) {
     val uiState = vm.uiState.collectAsState()
     val callbacks = MovieCallbacks(
@@ -18,4 +18,3 @@ fun CatalogScreen(
     )
     CatalogScreenView(uiState.value, callbacks)
 }
-
