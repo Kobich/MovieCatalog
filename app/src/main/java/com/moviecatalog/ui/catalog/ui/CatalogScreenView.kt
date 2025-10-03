@@ -1,12 +1,14 @@
-package com.moviecatalog.feature.catalog.ui
+package com.moviecatalog.ui.catalog.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -29,13 +31,54 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.feature.catalog.domain.models.Category
-import com.moviecatalog.feature.catalog.domain.models.Movie
-import com.moviecatalog.feature.catalog.ui.entity.MovieCallbacks
-import com.moviecatalog.feature.catalog.ui.entity.MovieUiState
+import com.moviecatalog.feature.movies.api.entity.Category
+import com.moviecatalog.feature.movies.api.entity.Movie
+import com.moviecatalog.ui.catalog.ui.entity.CatalogScreenUiState
+import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
+import com.moviecatalog.ui.catalog.ui.entity.MovieUiState
 
 @Composable
 fun CatalogScreenView(
+    uiState: CatalogScreenUiState,
+    callbacks: MovieCallbacks,
+) {
+    when (uiState) {
+        is CatalogScreenUiState.Error -> {
+            // Center
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Error: ${uiState.message}")
+            }
+        }
+
+        CatalogScreenUiState.Loading -> {
+            // Center
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Loading...")
+            }
+        }
+
+        is CatalogScreenUiState.Content -> {
+            CatalogContentView(
+                uiState = uiState.state,
+                callbacks = callbacks
+            )
+        }
+    }
+}
+
+
+@Composable
+fun CatalogContentView(
     uiState: MovieUiState,
     callbacks: MovieCallbacks,
 ) {
@@ -52,6 +95,7 @@ fun CatalogScreenView(
 
     Scaffold(
         bottomBar = {
+
             TabRow(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -59,6 +103,7 @@ fun CatalogScreenView(
                 modifier = Modifier.Companion
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth()
+                    .navigationBarsPadding()
             ) {
                 tabs.forEachIndexed { index, title ->
                     Tab(
@@ -84,13 +129,12 @@ fun CatalogScreenView(
         MovieCatalogList(
             items = movies,
             onMovieClick = callbacks.onMovieClick,
-            modifier = Modifier.Companion
+            modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
         )
     }
 }
-
 
 
 @Composable
@@ -147,13 +191,37 @@ fun MovieCatalogList(
 
 @Preview
 @Composable
-fun PreviewRenderMovieScreen() {
+fun PreviewRenderLoadingScreen() {
     CatalogScreenView(
+        uiState = CatalogScreenUiState.Loading,
+        callbacks = MovieCallbacks(
+            onMovieClick = {},
+            onCategoryChange = {},
+        )
+    )
+}
+
+@Preview
+@Composable
+fun PreviewRenderErrorScreen() {
+    CatalogScreenView(
+        uiState = CatalogScreenUiState.Error("Error"),
+        callbacks = MovieCallbacks(
+            onMovieClick = {},
+            onCategoryChange = {},
+        )
+    )
+}
+
+@Preview
+@Composable
+fun PreviewRenderMovieScreen() {
+    CatalogContentView(
         uiState = MovieUiState(
             movies = listOf(
-                Movie(1, "Fury", R.drawable.poster_fury),
-                Movie(2, "Leon", R.drawable.poster_lion),
-                Movie(3, "Akira", R.drawable.poster_akira),
+                Movie(1, "Fury", R.drawable.poster_fury, "", 0.0, emptyList(), category = Category.Popular),
+                Movie(2, "Leon", R.drawable.poster_lion, "", 0.0, emptyList(), category = Category.Popular),
+                Movie(3, "Akira", R.drawable.poster_akira, "", 0.0, emptyList(), category = Category.Popular),
             ),
             selectedCategory = Category.Trending,
         ),
