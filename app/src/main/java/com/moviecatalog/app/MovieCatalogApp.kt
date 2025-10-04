@@ -1,7 +1,7 @@
-package com.moviecatalog.app
+﻿package com.moviecatalog.app
 
 import android.app.Application
-import com.moviecatalog.di.appModule
+import com.moviecatalog.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,7 +10,7 @@ class MovieCatalogApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MovieCatalogApp)
-            modules(appModule)
+            modules(appModules)
         }
     }
 }
