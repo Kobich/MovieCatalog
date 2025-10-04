@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.details.domain
+package com.moviecatalog.ui.details.impl.domain
 
 import com.moviecatalog.feature.movies.api.MoviesFeature
 import kotlinx.coroutines.CoroutineScope
@@ -8,7 +8,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class DetailsInteractor(
+internal class DetailsInteractor(
     private val moviesFeature: MoviesFeature,
 ) {
     val state: MutableStateFlow<DetailsScreenState> =

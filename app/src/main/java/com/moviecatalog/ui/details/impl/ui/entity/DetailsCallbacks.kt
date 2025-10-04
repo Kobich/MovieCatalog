@@ -1,8 +1,8 @@
-package com.moviecatalog.ui.details.ui.entity
+package com.moviecatalog.ui.details.impl.ui.entity
 
 import com.moviecatalog.feature.movies.api.entity.Movie
 
-data class DetailsCallbacks(
+internal data class DetailsCallbacks(
     val onPosterClick: (Movie) -> Unit,
     val onBackClick: () -> Unit,
     )

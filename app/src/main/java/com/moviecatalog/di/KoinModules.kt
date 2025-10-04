@@ -2,7 +2,7 @@
 
 import com.moviecatalog.feature.movies.impl.di.moviesFeatureModule
 import com.moviecatalog.ui.catalog.di.catalogModule
-import com.moviecatalog.ui.details.di.detailsModule
+import com.moviecatalog.ui.details.impl.di.detailsModule
 import org.koin.core.module.Module
 
 val appModules: List<Module> = listOf(

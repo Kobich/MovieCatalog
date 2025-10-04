@@ -1,4 +1,4 @@
-﻿package com.moviecatalog.ui.details.ui
+﻿package com.moviecatalog.ui.details.impl.ui
 
 
 import androidx.compose.foundation.background
@@ -35,19 +35,17 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Movie
-import com.moviecatalog.ui.details.ui.entity.DetailsCallbacks
+import com.moviecatalog.ui.details.impl.ui.entity.DetailsCallbacks
 import com.moviecatalog.feature.movies.api.entity.Category
-import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
-
+import com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState
 
 @Composable
-fun DetailsScreen(
+internal fun DetailsScreen(
     navController: NavHostController,
     movieId: Int,
     vm: DetailsViewModel = koinViewModel(parameters = { parametersOf(movieId) }),
 ) {
     val state by vm.uiState.collectAsState()
-
 
     val callbacks = DetailsCallbacks(
         onPosterClick = {
@@ -64,7 +62,7 @@ fun DetailsScreen(
 
 
 @Composable
-fun DetailsContentView(
+internal fun DetailsContentView(
     movie: Movie,
     callbacks: DetailsCallbacks
 ) {
@@ -141,7 +139,7 @@ fun DetailsContentView(
 }
 
 @Composable
-fun DetailsScreenView(
+internal fun DetailsScreenView(
     uiState: MovieDetailsUiState,
     callbacks: DetailsCallbacks,
 ) {
@@ -178,7 +176,7 @@ fun DetailsScreenView(
 
 @Preview(showBackground = true)
 @Composable
-fun DetailsScreenPreview() {
+internal fun DetailsScreenPreview() {
     val mockMovie = Movie(
         id = 1,
         title = "Inception",
