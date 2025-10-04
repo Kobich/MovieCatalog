@@ -1,4 +1,4 @@
-package com.moviecatalog.di
+﻿package com.moviecatalog.di
 
 import com.moviecatalog.feature.movies.api.MoviesFeature
 import com.moviecatalog.feature.movies.impl.MoviesFeatureImpl
@@ -26,5 +26,5 @@ val appModule = module {
 
     // ViewModels
     viewModel { CatalogViewModel(interactor = get()) }
-    viewModel { DetailsViewModel(interactor = get()) }
+    viewModel { (movieId: Int) -> DetailsViewModel(movieId = movieId, interactor = get()) }
 }

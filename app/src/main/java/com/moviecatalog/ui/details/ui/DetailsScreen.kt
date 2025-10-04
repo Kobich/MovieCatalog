@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.details.ui
+﻿package com.moviecatalog.ui.details.ui
 
 
 import androidx.compose.foundation.background
@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -31,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.moviecatalog.R
@@ -44,13 +44,10 @@ import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
 fun DetailsScreen(
     navController: NavHostController,
     movieId: Int,
-    vm: DetailsViewModel = koinViewModel(),
+    vm: DetailsViewModel = koinViewModel(parameters = { parametersOf(movieId) }),
 ) {
-    LaunchedEffect(movieId) {
-        vm.setMovieId(movieId)
-    }
-
     val state by vm.uiState.collectAsState()
+
 
     val callbacks = DetailsCallbacks(
         onPosterClick = {
@@ -200,3 +197,4 @@ fun DetailsScreenPreview() {
         )
     )
 }
+

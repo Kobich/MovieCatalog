@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.details.ui
+﻿package com.moviecatalog.ui.details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class DetailsViewModel(
+    private val movieId: Int,
     private val interactor: DetailsInteractor,
 ) : ViewModel() {
 
@@ -22,15 +23,15 @@ class DetailsViewModel(
             initialValue = MovieDetailsUiState.Loading,
         )
 
+    init {
+        interactor.setMovieId(movieId)
+    }
+
     private fun DetailsScreenState.map(): MovieDetailsUiState {
         return when (this) {
             is DetailsScreenState.Loading -> MovieDetailsUiState.Loading
             is DetailsScreenState.Error -> MovieDetailsUiState.Error(message)
             is DetailsScreenState.Success -> MovieDetailsUiState.Content(state = this.movieState)
         }
-    }
-
-    fun setMovieId(id: Int) {
-        interactor.setMovieId(id)
     }
 }
