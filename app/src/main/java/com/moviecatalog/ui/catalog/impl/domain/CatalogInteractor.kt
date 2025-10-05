@@ -1,9 +1,9 @@
-package com.moviecatalog.ui.catalog.domain
+package com.moviecatalog.ui.catalog.impl.domain
 
 import com.moviecatalog.feature.movies.api.MoviesFeature
 import com.moviecatalog.feature.movies.api.entity.Category
-import com.moviecatalog.ui.catalog.domain.entity.CatalogScreenState
-import com.moviecatalog.ui.catalog.domain.entity.MovieState
+import com.moviecatalog.ui.catalog.impl.domain.entity.CatalogScreenState
+import com.moviecatalog.ui.catalog.impl.domain.entity.MovieState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

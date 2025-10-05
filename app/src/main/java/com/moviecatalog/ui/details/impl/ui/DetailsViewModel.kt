@@ -29,9 +29,9 @@ internal class DetailsViewModel(
 
     private fun DetailsScreenState.map(): MovieDetailsUiState {
         return when (this) {
-            is DetailsScreenState.Loading -> MovieDetailsUiState.Loading
-            is DetailsScreenState.Error -> MovieDetailsUiState.Error(message)
-            is DetailsScreenState.Success -> MovieDetailsUiState.Content(state = this.movieState)
+            is DetailsScreenState.Loading -> com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState.Loading
+            is DetailsScreenState.Error -> com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState.Error(message)
+            is DetailsScreenState.Success -> com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState.Content(state = this.movieState)
         }
     }
 }

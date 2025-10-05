@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.catalog.ui
+package com.moviecatalog.ui.catalog.impl.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,9 +15,9 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,9 +33,9 @@ import coil.compose.AsyncImage
 import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Category
 import com.moviecatalog.feature.movies.api.entity.Movie
-import com.moviecatalog.ui.catalog.ui.entity.CatalogScreenUiState
-import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
-import com.moviecatalog.ui.catalog.ui.entity.MovieUiState
+import com.moviecatalog.ui.catalog.impl.ui.entity.CatalogScreenUiState
+import com.moviecatalog.ui.catalog.impl.ui.entity.MovieCallbacks
+import com.moviecatalog.ui.catalog.impl.ui.entity.MovieUiState
 
 @Composable
 fun CatalogScreenView(
@@ -95,12 +95,11 @@ fun CatalogContentView(
 
     Scaffold(
         bottomBar = {
-
-            TabRow(
+            PrimaryTabRow(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth()
                     .navigationBarsPadding()
@@ -135,6 +134,7 @@ fun CatalogContentView(
         )
     }
 }
+
 
 
 @Composable

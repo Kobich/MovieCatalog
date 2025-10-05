@@ -10,13 +10,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
-import com.moviecatalog.ui.catalog.ui.CatalogScreen
+import com.moviecatalog.ui.catalog.api.CatalogUiFeature
 import com.moviecatalog.ui.details.api.DetailsUiFeature
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
     private val detailsUiFeature by inject<DetailsUiFeature>()
+    private val catalogUiFeature by inject<CatalogUiFeature>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = "catalog"
                 ) {
                     composable("catalog") {
-                        CatalogScreen(navController)
+                        catalogUiFeature.Content(navController)
                     }
 
                     composable(

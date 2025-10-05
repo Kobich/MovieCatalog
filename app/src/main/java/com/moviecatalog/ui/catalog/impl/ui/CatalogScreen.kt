@@ -1,10 +1,10 @@
-package com.moviecatalog.ui.catalog.ui
+package com.moviecatalog.ui.catalog.impl.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
-import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
+import com.moviecatalog.ui.catalog.impl.ui.entity.MovieCallbacks
 
 @Composable
 fun CatalogScreen(
