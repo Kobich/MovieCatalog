@@ -15,9 +15,9 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -95,12 +95,11 @@ fun CatalogContentView(
 
     Scaffold(
         bottomBar = {
-
-            TabRow(
+            PrimaryTabRow(
                 selectedTabIndex = selectedTabIndex,
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth()
                     .navigationBarsPadding()
@@ -135,6 +134,7 @@ fun CatalogContentView(
         )
     }
 }
+
 
 
 @Composable
