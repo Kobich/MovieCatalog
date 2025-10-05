@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.catalog.ui.entity
+package com.moviecatalog.ui.catalog.impl.ui.entity
 
 import com.moviecatalog.feature.movies.api.entity.Category
 import com.moviecatalog.feature.movies.api.entity.Movie

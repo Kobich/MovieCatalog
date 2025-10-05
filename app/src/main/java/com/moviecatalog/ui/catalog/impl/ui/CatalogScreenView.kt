@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.catalog.ui
+package com.moviecatalog.ui.catalog.impl.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,9 +33,9 @@ import coil.compose.AsyncImage
 import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Category
 import com.moviecatalog.feature.movies.api.entity.Movie
-import com.moviecatalog.ui.catalog.ui.entity.CatalogScreenUiState
-import com.moviecatalog.ui.catalog.ui.entity.MovieCallbacks
-import com.moviecatalog.ui.catalog.ui.entity.MovieUiState
+import com.moviecatalog.ui.catalog.impl.ui.entity.CatalogScreenUiState
+import com.moviecatalog.ui.catalog.impl.ui.entity.MovieCallbacks
+import com.moviecatalog.ui.catalog.impl.ui.entity.MovieUiState
 
 @Composable
 fun CatalogScreenView(
