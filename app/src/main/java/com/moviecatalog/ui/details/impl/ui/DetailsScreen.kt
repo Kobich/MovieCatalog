@@ -37,13 +37,15 @@ import com.moviecatalog.R
 import com.moviecatalog.feature.movies.api.entity.Movie
 import com.moviecatalog.ui.details.impl.ui.entity.DetailsCallbacks
 import com.moviecatalog.feature.movies.api.entity.Category
+import com.moviecatalog.ui.details.impl.di.DetailsScopeViewModel
 import com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState
 
 @Composable
 internal fun DetailsScreen(
     navController: NavHostController,
     movieId: Int,
-    vm: DetailsViewModel = koinViewModel(parameters = { parametersOf(movieId) }),
+    scopeVM: DetailsScopeViewModel = koinViewModel(),
+    vm: DetailsViewModel = koinViewModel(scope = scopeVM.scope, parameters = { parametersOf(movieId) }),
 ) {
     val state by vm.uiState.collectAsState()
 

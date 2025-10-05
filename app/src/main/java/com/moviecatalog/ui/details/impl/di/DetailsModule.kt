@@ -10,6 +10,11 @@ import org.koin.dsl.module
 val detailsModule = module {
     single<DetailsUiFeature> { DetailsUiFeatureImpl() }
 
-    single { DetailsInteractor(moviesFeature = get()) }
-    viewModel { (movieId: Int) -> DetailsViewModel(movieId = movieId, interactor = get()) }
+    // ViewModel для управления жизненным циклом скоупа
+    viewModel { DetailsScopeViewModel() }
+
+    scope<DetailsScopeViewModel> {
+        scoped { DetailsInteractor(moviesFeature = get()) }
+        viewModel { (movieId: Int) -> DetailsViewModel(movieId = movieId, interactor = get()) }
+    }
 }

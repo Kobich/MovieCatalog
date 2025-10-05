@@ -1,5 +1,6 @@
 package com.moviecatalog.ui.details.impl.domain
 
+import android.util.Log
 import com.moviecatalog.feature.movies.api.MoviesFeature
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +12,11 @@ import kotlinx.coroutines.launch
 internal class DetailsInteractor(
     private val moviesFeature: MoviesFeature,
 ) {
+
+    init {
+        Log.d("DetailsInteractor", "init")
+    }
+
     val state: MutableStateFlow<DetailsScreenState> =
         MutableStateFlow(DetailsScreenState.Loading)
 
