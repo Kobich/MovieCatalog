@@ -1,18 +1,18 @@
-﻿package com.moviecatalog.ui.details.ui
+﻿package com.moviecatalog.ui.details.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.moviecatalog.ui.details.domain.DetailsInteractor
-import com.moviecatalog.ui.details.domain.DetailsScreenState
-import com.moviecatalog.ui.details.ui.entity.MovieDetailsUiState
+import com.moviecatalog.ui.details.impl.domain.DetailsInteractor
+import com.moviecatalog.ui.details.impl.domain.DetailsScreenState
+import com.moviecatalog.ui.details.impl.ui.entity.MovieDetailsUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetailsViewModel(
-    private val movieId: Int,
-    private val interactor: DetailsInteractor,
+internal class DetailsViewModel(
+    movieId: Int,
+    interactor: DetailsInteractor,
 ) : ViewModel() {
 
     val uiState: StateFlow<MovieDetailsUiState> = interactor.state
