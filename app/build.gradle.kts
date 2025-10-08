@@ -1,8 +1,21 @@
+import java.io.File
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
+
+val localProperties = Properties().apply {
+    val file = File(rootProject.rootDir, "local.properties")
+    if (file.exists()) {
+        load(file.inputStream())
+    }
+}
+
+val wbApiKey = localProperties.getProperty("WB_TEST_API_KEY") ?: ""
+val wbApiBaseUrl = localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api-sandbox.wildberries.ru/"
 
 android {
     namespace = "com.moviecatalog"
@@ -14,9 +27,11 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "WB_TEST_API_KEY", "\"$wbApiKey\"")
+        buildConfigField("String", "WB_API_BASE_URL", "\"$wbApiBaseUrl\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -35,15 +50,25 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }
 
 dependencies {
 
+    //DI
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    //Net
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.logging.interceptor)
+
 
     implementation(libs.coil.compose)
     implementation(libs.androidx.core.ktx)

@@ -3,6 +3,7 @@ package com.moviecatalog.ui.details.impl.di
 import android.util.Log
 import org.koin.viewmodel.scope.ScopeViewModel
 
+
 /**
  * ViewModel только для управления жизненным циклом скоупа
  * Когда уходим с экрана ViewModel уничтожается вместе с скоупом
