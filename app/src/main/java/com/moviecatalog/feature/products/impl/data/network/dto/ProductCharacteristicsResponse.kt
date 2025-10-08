@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.products.impl.data.remote.model
+package com.moviecatalog.feature.products.impl.data.network.dto
 
 import com.squareup.moshi.Json
 
