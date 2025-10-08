@@ -1,11 +1,11 @@
-package com.moviecatalog.feature.products.impl.data.mapper
+package com.moviecatalog.feature.products.impl.data.network.mapper
 
 import com.moviecatalog.feature.products.api.entity.CategoryParent
 import com.moviecatalog.feature.products.api.entity.ProductCharacteristic
 import com.moviecatalog.feature.products.api.entity.ProductSubject
-import com.moviecatalog.feature.products.impl.data.remote.model.CategoryParentDto
-import com.moviecatalog.feature.products.impl.data.remote.model.ProductCharacteristicDto
-import com.moviecatalog.feature.products.impl.data.remote.model.ProductSubjectDto
+import com.moviecatalog.feature.products.impl.data.network.dto.CategoryParentDto
+import com.moviecatalog.feature.products.impl.data.network.dto.ProductCharacteristicDto
+import com.moviecatalog.feature.products.impl.data.network.dto.ProductSubjectDto
 
 internal fun CategoryParentDto.toDomain(): CategoryParent {
     return CategoryParent(

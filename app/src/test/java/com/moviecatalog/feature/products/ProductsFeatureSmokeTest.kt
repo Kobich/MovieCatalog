@@ -1,6 +1,7 @@
 package com.moviecatalog.feature.products
 
 import com.moviecatalog.BuildConfig
+import com.moviecatalog.feature.network.impl.di.networkFeatureModule
 import com.moviecatalog.feature.products.api.ProductFeature
 import com.moviecatalog.feature.products.impl.di.productFeatureModule
 import kotlinx.coroutines.delay
@@ -24,7 +25,10 @@ class ProductsFeatureSmokeTest {
     @Before
     fun setUp() {
         koinApp = koinApplication {
-            modules(productFeatureModule)
+            modules(
+                networkFeatureModule,
+                productFeatureModule
+            )
         }
         require(BuildConfig.WB_TEST_API_KEY.isNotBlank()) {
             "WB_TEST_API_KEY should be defined in local.properties for smoke test"

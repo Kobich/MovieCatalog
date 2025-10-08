@@ -1,8 +1,8 @@
-package com.moviecatalog.feature.products.impl.data.remote.service
+package com.moviecatalog.feature.products.impl.data.network
 
-import com.moviecatalog.feature.products.impl.data.remote.model.CategoryParentsResponse
-import com.moviecatalog.feature.products.impl.data.remote.model.ProductCharacteristicsResponse
-import com.moviecatalog.feature.products.impl.data.remote.model.ProductSubjectsResponse
+import com.moviecatalog.feature.products.impl.data.network.dto.CategoryParentsResponse
+import com.moviecatalog.feature.products.impl.data.network.dto.ProductCharacteristicsResponse
+import com.moviecatalog.feature.products.impl.data.network.dto.ProductSubjectsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
