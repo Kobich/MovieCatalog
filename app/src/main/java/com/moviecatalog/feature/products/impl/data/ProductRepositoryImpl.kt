@@ -5,6 +5,7 @@ import com.moviecatalog.feature.products.api.entity.ProductCharacteristic
 import com.moviecatalog.feature.products.api.entity.ProductSubject
 import com.moviecatalog.feature.products.impl.data.network.mapper.toDomain
 import com.moviecatalog.feature.products.impl.data.network.ProductsApi
+import com.moviecatalog.feature.products.impl.data.network.dto.CardsRequest
 import com.moviecatalog.feature.products.impl.domain.ProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -52,6 +53,14 @@ class ProductRepositoryImpl(
             )
                 .items
                 .map { it.toDomain() }
+        }
+    }
+
+    override suspend fun getCards(): List<Long> {
+        return withContext(Dispatchers.IO) {
+            api.getCards(CardsRequest())
+                .cards
+                .map { it.nmID }
         }
     }
 }

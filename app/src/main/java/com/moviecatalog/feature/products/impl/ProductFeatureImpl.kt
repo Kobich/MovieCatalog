@@ -4,11 +4,13 @@ import com.moviecatalog.feature.products.api.ProductFeature
 import com.moviecatalog.feature.products.api.entity.CategoryParent
 import com.moviecatalog.feature.products.api.entity.ProductCharacteristic
 import com.moviecatalog.feature.products.api.entity.ProductSubject
+import com.moviecatalog.feature.products.impl.domain.CardsInteractor
 import com.moviecatalog.feature.products.impl.domain.ProductDataInteractor
 
 
 class ProductFeatureImpl(
-    private val productsDataInteractor: ProductDataInteractor
+    private val productsDataInteractor: ProductDataInteractor,
+    private val cardsInteractor: CardsInteractor
 ) : ProductFeature {
 
     override suspend fun getProductParents(locale: String?): List<CategoryParent> {
@@ -40,4 +42,9 @@ class ProductFeatureImpl(
             locale = locale,
         )
     }
+
+    override suspend fun getCards(): List<Long> {
+        return cardsInteractor.getCards()
+    }
+
 }

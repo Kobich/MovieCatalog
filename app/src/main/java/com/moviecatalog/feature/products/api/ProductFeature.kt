@@ -17,4 +17,6 @@ interface ProductFeature {
         subjectId: Int,
         locale: String? = null,
     ): List<ProductCharacteristic>
+
+    suspend fun getCards(): List<Long>
 }

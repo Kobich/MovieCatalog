@@ -1,9 +1,13 @@
 package com.moviecatalog.feature.products.impl.data.network
 
+import com.moviecatalog.feature.products.impl.data.network.dto.CardsRequest
+import com.moviecatalog.feature.products.impl.data.network.dto.CardsResponseDto
 import com.moviecatalog.feature.products.impl.data.network.dto.CategoryParentsResponse
 import com.moviecatalog.feature.products.impl.data.network.dto.ProductCharacteristicsResponse
 import com.moviecatalog.feature.products.impl.data.network.dto.ProductSubjectsResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -33,4 +37,9 @@ interface ProductsApi {
         @Path("subjectId") subjectId: Int,
         @Query("locale") locale: String? = null,
     ): ProductCharacteristicsResponse
+
+    @POST("/content/v2/get/cards/list")
+    suspend fun getCards(
+        @Body body: CardsRequest
+    ): CardsResponseDto
 }

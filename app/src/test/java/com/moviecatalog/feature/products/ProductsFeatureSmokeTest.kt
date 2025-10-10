@@ -67,4 +67,16 @@ class ProductsFeatureSmokeTest {
             "Loaded parents: ${parents.size}, subjects: ${subjects.size}, characteristics: ${characteristics.size}"
         )
     }
+
+    @Test
+    fun `load cards`() = runBlocking {
+        val feature: ProductFeature = koinApp.koin.get()
+
+        val cards = feature.getCards()
+
+        println(
+            "cards: $cards"
+        )
+    }
+
 }
