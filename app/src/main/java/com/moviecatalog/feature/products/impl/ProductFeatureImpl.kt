@@ -11,13 +11,33 @@ class ProductFeatureImpl(
     private val productsDataInteractor: ProductDataInteractor
 ) : ProductFeature {
 
-    override suspend fun getProductParents(): List<CategoryParent> {
-        return productsDataInteractor.getProductParents()
+    override suspend fun getProductParents(locale: String?): List<CategoryParent> {
+        return productsDataInteractor.getProductParents(locale)
     }
-    override suspend fun getProductSubjects(): List<ProductSubject> {
-        return productsDataInteractor.getProductSubjects()
+
+    override suspend fun getProductSubjects(
+        locale: String?,
+        name: String?,
+        limit: Int?,
+        offset: Int?,
+        parentId: Int?,
+    ): List<ProductSubject> {
+        return productsDataInteractor.getProductSubjects(
+            locale = locale,
+            name = name,
+            limit = limit,
+            offset = offset,
+            parentId = parentId,
+        )
     }
-    override suspend fun getProductCharacteristics(subjectId: Int): List<ProductCharacteristic> {
-        return productsDataInteractor.getProductCharacteristics(subjectId)
+
+    override suspend fun getProductCharacteristics(
+        subjectId: Int,
+        locale: String?,
+    ): List<ProductCharacteristic> {
+        return productsDataInteractor.getProductCharacteristics(
+            subjectId = subjectId,
+            locale = locale,
+        )
     }
 }

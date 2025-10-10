@@ -5,6 +5,7 @@ import com.moviecatalog.feature.products.impl.data.network.dto.ProductCharacteri
 import com.moviecatalog.feature.products.impl.data.network.dto.ProductSubjectsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Retrofit contract describing endpoints that expose products related dictionaries.
@@ -13,13 +14,23 @@ import retrofit2.http.Path
 interface ProductsApi {
 
     @GET("/content/v2/object/parent/all")
-    suspend fun getCategoryParents(): CategoryParentsResponse
+    suspend fun getCategoryParents(
+        @Query("locale") locale: String? = null
+    ): CategoryParentsResponse
+
 
     @GET("/content/v2/object/all")
-    suspend fun getProductSubjects(): ProductSubjectsResponse
+    suspend fun getProductSubjects(
+        @Query("locale") locale: String? = null,
+        @Query("name") name: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("parentID") parentID: Int? = null,
+    ): ProductSubjectsResponse
 
     @GET("/content/v2/object/charcs/{subjectId}")
     suspend fun getProductCharacteristics(
-        @Path("subjectId") subjectId: Int
+        @Path("subjectId") subjectId: Int,
+        @Query("locale") locale: String? = null,
     ): ProductCharacteristicsResponse
 }

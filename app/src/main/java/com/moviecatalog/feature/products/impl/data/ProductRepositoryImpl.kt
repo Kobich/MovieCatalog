@@ -13,25 +13,43 @@ class ProductRepositoryImpl(
     private val api: ProductsApi,
 ) : ProductRepository {
 
-    override suspend fun getProductParents(): List<CategoryParent> {
+    override suspend fun getProductParents(locale: String?): List<CategoryParent> {
         return withContext(Dispatchers.IO) {
-            api.getCategoryParents()
+            api.getCategoryParents(locale = locale)
                 .items
                 .map { it.toDomain() }
         }
     }
 
-    override suspend fun getProductSubjects(): List<ProductSubject> {
-        return  withContext(Dispatchers.IO) {
-            api.getProductSubjects()
+    override suspend fun getProductSubjects(
+        locale: String?,
+        name: String?,
+        limit: Int?,
+        offset: Int?,
+        parentId: Int?,
+    ): List<ProductSubject> {
+        return withContext(Dispatchers.IO) {
+            api.getProductSubjects(
+                locale = locale,
+                name = name,
+                limit = limit,
+                offset = offset,
+                parentID = parentId,
+            )
                 .items
                 .map { it.toDomain() }
         }
     }
 
-    override suspend fun getProductCharacteristics(subjectId: Int): List<ProductCharacteristic> {
-        return  withContext(Dispatchers.IO) {
-            api.getProductCharacteristics(subjectId)
+    override suspend fun getProductCharacteristics(
+        subjectId: Int,
+        locale: String?,
+    ): List<ProductCharacteristic> {
+        return withContext(Dispatchers.IO) {
+            api.getProductCharacteristics(
+                subjectId = subjectId,
+                locale = locale,
+            )
                 .items
                 .map { it.toDomain() }
         }

@@ -44,15 +44,27 @@ class ProductsFeatureSmokeTest {
     fun `load product dictionaries end-to-end`() = runBlocking {
         val feature: ProductFeature = koinApp.koin.get()
 
-        val parents = feature.getProductParents()
+        val locale = "ru"
+
+        val parents = feature.getProductParents(locale = locale)
         assertFalse("Expected non-empty parents list", parents.isEmpty())
         delay(1200)
-        val subjects = feature.getProductSubjects()
+
+        val subjects = feature.getProductSubjects(
+            locale = locale,
+            limit = 10,
+            offset = 0,
+        )
         assertFalse("Expected non-empty subjects list", subjects.isEmpty())
         delay(1200)
         val firstSubjectId = subjects.first().subjectID
-        val characteristics = feature.getProductCharacteristics(subjectId = firstSubjectId)
+        val characteristics = feature.getProductCharacteristics(
+            subjectId = firstSubjectId,
+            locale = locale,
+        )
 
-        println("Loaded parents: ${parents.size}, subjects: {subjects.size}, characteristics: {characteristics.size}")
+        println(
+            "Loaded parents: ${parents.size}, subjects: ${subjects.size}, characteristics: ${characteristics.size}"
+        )
     }
 }
