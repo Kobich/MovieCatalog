@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 }
 
 val localProperties = Properties().apply {
@@ -64,11 +65,15 @@ dependencies {
 
     //Net
     implementation(libs.retrofit)
-    implementation(libs.converter.moshi)
-    implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
     implementation(libs.logging.interceptor)
 
+    // Moshi
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.adapters)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.retrofit)
+    ksp(libs.moshi.kotlin.codegen)
 
     implementation(libs.coil.compose)
     implementation(libs.androidx.core.ktx)
