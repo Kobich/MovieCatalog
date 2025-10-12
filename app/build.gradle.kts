@@ -15,8 +15,9 @@ val localProperties = Properties().apply {
     }
 }
 
-val wbApiKey = localProperties.getProperty("WB_TEST_API_KEY") ?: ""
-val wbApiBaseUrl = localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api-sandbox.wildberries.ru/"
+val wbTestApiKey = localProperties.getProperty("WB_TEST_API_KEY") ?: ""
+val wbApiKey = localProperties.getProperty("WB_API_KEY") ?: ""
+val wbApiBaseUrl = localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api.wildberries.ru/"
 
 android {
     namespace = "com.moviecatalog"
@@ -28,7 +29,8 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "WB_TEST_API_KEY", "\"$wbApiKey\"")
+        buildConfigField("String", "WB_API_KEY", "\"$wbApiKey\"")
+        buildConfigField("String", "WB_TEST_API_KEY", "\"$wbTestApiKey\"")
         buildConfigField("String", "WB_API_BASE_URL", "\"$wbApiBaseUrl\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
