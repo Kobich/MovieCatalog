@@ -10,14 +10,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
-import com.moviecatalog.ui.catalog.api.CatalogUiFeature
+import com.moviecatalog.ui.cards.api.CardsUiFeature
 import com.moviecatalog.ui.details.api.DetailsUiFeature
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
     private val detailsUiFeature by inject<DetailsUiFeature>()
-    private val catalogUiFeature by inject<CatalogUiFeature>()
+    private val cardsUiFeature by inject<CardsUiFeature>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +28,27 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = "catalog"
+                    startDestination = "cards"
                 ) {
-                    composable("catalog") {
-                        catalogUiFeature.Content(navController)
+                    composable("cards") {
+                        cardsUiFeature.Content(navController)
+                    }
+
+                    composable(
+                        route = "cards/{cardId}",
+                        arguments = listOf(navArgument("cardId") { type = NavType.IntType })
+                    ) { backStackEntry ->
+                        val movieId =
+                            backStackEntry.arguments?.getInt("cardId") ?: return@composable
+                        detailsUiFeature.Content(navController, movieId)
                     }
 
                     composable(
                         route = "details/{movieId}",
                         arguments = listOf(navArgument("movieId") { type = NavType.IntType })
                     ) { backStackEntry ->
-                        val movieId = backStackEntry.arguments?.getInt("movieId") ?: return@composable
+                        val movieId =
+                            backStackEntry.arguments?.getInt("movieId") ?: return@composable
                         detailsUiFeature.Content(navController, movieId)
                     }
                 }
