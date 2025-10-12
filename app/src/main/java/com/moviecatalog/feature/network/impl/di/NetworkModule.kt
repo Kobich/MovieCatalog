@@ -19,7 +19,7 @@ val networkFeatureModule = module {
     ) }
 
     // data
-    single(named(API_KEY)) { BuildConfig.WB_TEST_API_KEY }
+    single(named(API_KEY)) { BuildConfig.WB_API_KEY }
     single(named(BASE_URL)) { BuildConfig.WB_API_BASE_URL }
     single<OkHttpHolder> { OkHttpHolder(apiKey = get(named(API_KEY)))}
     single<MoshiHolder> { MoshiHolder() }
