@@ -37,6 +37,7 @@ data class PhotoDto(
     @param:Json(name = "big") val big: String? = null,
     @param:Json(name = "c246x328") val c246x328: String? = null,
     @param:Json(name = "c516x688") val c516x688: String? = null,
+    @param:Json(name = "hq") val hq: String? = null,
     @param:Json(name = "square") val square: String? = null,
     @param:Json(name = "tm") val tm: String? = null,
 )
@@ -72,6 +73,7 @@ data class CharacteristicDto(
 data class SizeDto(
     @param:Json(name = "chrtID") val chrtID: Long? = null,
     @param:Json(name = "techSize") val techSize: String? = null,
+    @param:Json(name = "wbSize") val wbSize: String? = null,
     @param:Json(name = "skus") val skus: List<String> = emptyList(),
 )
 
