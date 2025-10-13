@@ -10,7 +10,18 @@ internal class CardsDtoMapper {
 
     fun map(cardsResponseDto: CardsResponseDto) : CardsResult {
         return CardsResult(
-            cards = cardsResponseDto.cards.map { Card(it.nmID) },
+            cards = cardsResponseDto.cards.map { cardDto ->
+                Card(
+                    id = cardDto.nmID,
+                    title = cardDto.title ?: cardDto.vendorCode,
+                    imageUrl = cardDto.photos.firstOrNull()?.let { photo ->
+                        photo.c246x328
+                            ?: photo.big
+                            ?: photo.square
+                            ?: photo.tm
+                    }
+                )
+            },
             cursor = mapCursor(cardsResponseDto.cursor)
         )
     }
