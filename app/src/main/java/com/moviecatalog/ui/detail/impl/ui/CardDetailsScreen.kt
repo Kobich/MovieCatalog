@@ -44,8 +44,8 @@ import org.koin.core.parameter.parametersOf
 @Composable
 internal fun CardDetailsScreen(
     navController: NavHostController,
-    cardId: Long,
-    vm: CardDetailsViewModel = koinViewModel(parameters = { parametersOf(cardId) }),
+    imtID: Long,
+    vm: CardDetailsViewModel = koinViewModel(parameters = { parametersOf(imtID) }),
 ) {
     val uiState by vm.uiState.collectAsState()
 

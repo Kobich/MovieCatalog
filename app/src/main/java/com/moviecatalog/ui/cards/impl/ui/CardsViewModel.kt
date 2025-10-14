@@ -41,6 +41,7 @@ class CardsViewModel(
                     cards = cardsState.cards.map { card ->
                         CardViewState(
                             id = card.id,
+                            imtID = card.imtID,
                             title = card.title.orEmpty(),
                             imageUrl = card.imageUrl
                         )

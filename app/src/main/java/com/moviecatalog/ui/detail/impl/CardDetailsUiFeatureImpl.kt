@@ -8,7 +8,7 @@ import com.moviecatalog.ui.detail.impl.ui.CardDetailsScreen
 internal class CardDetailsUiFeatureImpl : CardDetailsUiFeature {
 
     @Composable
-    override fun Content(navController: NavHostController, cardId: Long) {
-        CardDetailsScreen(navController = navController, cardId = cardId)
+    override fun Content(navController: NavHostController, imtID: Long) {
+        CardDetailsScreen(navController = navController, imtID = imtID)
     }
 }

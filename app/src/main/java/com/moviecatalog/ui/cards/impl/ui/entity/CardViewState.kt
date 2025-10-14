@@ -13,6 +13,7 @@ data class CardsViewState(
 
 data class CardViewState(
     val id: Long,
+    val imtID: Long,
     val title: String,
     val imageUrl: String?,
 )

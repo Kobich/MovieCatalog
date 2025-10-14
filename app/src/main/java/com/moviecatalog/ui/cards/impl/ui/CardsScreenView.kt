@@ -167,7 +167,7 @@ fun CardCatalogCard(
 @Composable
 fun CardsCatalogList(
     items: List<CardViewState>,
-    onClick: (CardViewState) -> Unit,
+    onClick: (imtID: Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalStaggeredGrid(
@@ -178,7 +178,7 @@ fun CardsCatalogList(
         content = {
             items(items.size) { index ->
                 val card = items[index]
-                CardCatalogCard(card, onClick = { onClick(card) })
+                CardCatalogCard(card, onClick = { onClick(card.imtID) })
             }
         }
     )
@@ -214,10 +214,10 @@ fun PreviewRenderMovieScreen() {
     CardsContentView(
         uiState = CardsViewState(
             cards = listOf(
-                CardViewState(id = 1, title = "Карточка 1", imageUrl = null),
-                CardViewState(id = 2, title = "Карточка 2", imageUrl = null),
-                CardViewState(id = 3, title = "Карточка 3", imageUrl = null),
-                CardViewState(id = 4, title = "Карточка 4", imageUrl = null),
+                CardViewState(id = 1, imtID = 1, title = "Карточка 1", imageUrl = null),
+                CardViewState(id = 2, imtID = 2, title = "Карточка 2", imageUrl = null),
+                CardViewState(id = 3, imtID = 3, title = "Карточка 3", imageUrl = null),
+                CardViewState(id = 4, imtID = 4, title = "Карточка 4", imageUrl = null),
             ),
         ),
         callbacks = CardsCallbacks(

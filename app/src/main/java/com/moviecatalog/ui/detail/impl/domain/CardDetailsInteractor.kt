@@ -18,12 +18,12 @@ internal class CardDetailsInteractor(
     val state: MutableStateFlow<CardDetailsScreenState> =
         MutableStateFlow(CardDetailsScreenState.Loading)
 
-    fun load(cardId: Long) {
+    fun load(imtID: Long) {
         job?.cancel()
         job = coroutineScope.launch {
             state.value = CardDetailsScreenState.Loading
             try {
-                val card = cardsFeature.getCard(cardId)
+                val card = cardsFeature.getCard(imtID)
                 if (card != null) {
                     state.value = CardDetailsScreenState.Success(card)
                 } else {

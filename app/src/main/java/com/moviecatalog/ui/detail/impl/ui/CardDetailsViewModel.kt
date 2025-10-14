@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 internal class CardDetailsViewModel(
-    cardId: Long,
+    imtID: Long,
     private val interactor: CardDetailsInteractor,
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ internal class CardDetailsViewModel(
         )
 
     init {
-        interactor.load(cardId)
+        interactor.load(imtID)
     }
 
     private fun CardDetailsScreenState.toUiState(): CardDetailsUiState {

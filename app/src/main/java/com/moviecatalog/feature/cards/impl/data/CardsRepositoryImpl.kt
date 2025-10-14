@@ -27,11 +27,11 @@ internal class CardsRepositoryImpl(
         }
     }
 
-    override suspend fun getCard(nmId: Long): CardDetail? {
+    override suspend fun getCard(imtID: Long): CardDetail? {
         return withContext(Dispatchers.IO) {
             val request = CardsRequest(
                 settings = SettingsDto(
-                    filter = FilterDto(textSearch = nmId.toString()),
+                    filter = FilterDto(imtID = imtID),
                     cursor = CursorDto(limit = 1)
                 )
             )

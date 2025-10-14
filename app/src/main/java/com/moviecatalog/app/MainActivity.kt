@@ -35,12 +35,12 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(
-                        route = "card/{cardId}",
-                        arguments = listOf(navArgument("cardId") { type = NavType.LongType })
+                        route = "card/{imtID}",
+                        arguments = listOf(navArgument("imtID") { type = NavType.LongType })
                     ) { backStackEntry ->
-                        val cardId =
-                            backStackEntry.arguments?.getLong("cardId") ?: return@composable
-                        cardDetailsUiFeature.Content(navController, cardId)
+                        val imtID =
+                            backStackEntry.arguments?.getLong("imtID") ?: return@composable
+                        cardDetailsUiFeature.Content(navController, imtID)
                     }
                 }
             }
