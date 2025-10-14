@@ -8,15 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,6 +45,7 @@ fun CardsScreenView(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .imePadding()
                     .background(MaterialTheme.colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
@@ -58,6 +58,7 @@ fun CardsScreenView(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .imePadding()
                     .background(MaterialTheme.colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
@@ -82,7 +83,10 @@ fun CardsContentView(
 ) {
     val cards = uiState.cards
 
-    Scaffold() { innerPadding ->
+    Scaffold(
+        modifier = Modifier
+            .statusBarsPadding()
+    ) { innerPadding ->
         CardsCatalogList(
             items = cards,
             onClick = callbacks.onClick,
