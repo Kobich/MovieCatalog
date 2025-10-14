@@ -1,8 +1,6 @@
 package com.moviecatalog.ui.cards.impl.domain.entity
 
 import com.moviecatalog.feature.cards.api.entity.Card
-import com.moviecatalog.feature.movies.api.entity.Category
-import com.moviecatalog.feature.movies.api.entity.Movie
 
 sealed interface CardsScreenState {
     data object Loading : CardsScreenState

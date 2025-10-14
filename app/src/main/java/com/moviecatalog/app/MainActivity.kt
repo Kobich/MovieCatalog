@@ -11,12 +11,12 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
 import com.moviecatalog.ui.cards.api.CardsUiFeature
-import com.moviecatalog.ui.details.api.DetailsUiFeature
+import com.moviecatalog.ui.card.api.CardDetailsUiFeature
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    private val detailsUiFeature by inject<DetailsUiFeature>()
+    private val cardDetailsUiFeature by inject<CardDetailsUiFeature>()
     private val cardsUiFeature by inject<CardsUiFeature>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,29 +35,15 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(
-                        route = "cards/{cardId}",
-                        arguments = listOf(navArgument("cardId") { type = NavType.IntType })
+                        route = "card/{imtID}",
+                        arguments = listOf(navArgument("imtID") { type = NavType.LongType })
                     ) { backStackEntry ->
-                        val movieId =
-                            backStackEntry.arguments?.getInt("cardId") ?: return@composable
-                        detailsUiFeature.Content(navController, movieId)
-                    }
-
-                    composable(
-                        route = "details/{movieId}",
-                        arguments = listOf(navArgument("movieId") { type = NavType.IntType })
-                    ) { backStackEntry ->
-                        val movieId =
-                            backStackEntry.arguments?.getInt("movieId") ?: return@composable
-                        detailsUiFeature.Content(navController, movieId)
+                        val imtID =
+                            backStackEntry.arguments?.getLong("imtID") ?: return@composable
+                        cardDetailsUiFeature.Content(navController, imtID)
                     }
                 }
             }
         }
     }
 }
-
-
-
-
-

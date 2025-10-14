@@ -16,6 +16,7 @@ val localProperties = Properties().apply {
 }
 
 val wbTestApiKey = localProperties.getProperty("WB_TEST_API_KEY") ?: ""
+val wbTestApiBaseUrl = localProperties.getProperty("WB_TEST_API_BASE_URL") ?: "https://content-api-sandbox.wildberries.ru/"
 val wbApiKey = localProperties.getProperty("WB_API_KEY") ?: ""
 val wbApiBaseUrl = localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api.wildberries.ru/"
 
@@ -30,8 +31,9 @@ android {
         versionCode = 1
         versionName = "1.0"
         buildConfigField("String", "WB_API_KEY", "\"$wbApiKey\"")
-        buildConfigField("String", "WB_TEST_API_KEY", "\"$wbTestApiKey\"")
         buildConfigField("String", "WB_API_BASE_URL", "\"$wbApiBaseUrl\"")
+        buildConfigField("String", "WB_TEST_API_KEY", "\"$wbTestApiKey\"")
+        buildConfigField("String", "WB_TEST_API_BASE_URL", "\"$wbTestApiBaseUrl\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

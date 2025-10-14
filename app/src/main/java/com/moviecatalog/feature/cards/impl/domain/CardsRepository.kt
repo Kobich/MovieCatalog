@@ -1,9 +1,11 @@
 package com.moviecatalog.feature.cards.impl.domain
 
 import com.moviecatalog.feature.cards.api.entity.Card
+import com.moviecatalog.feature.cards.api.entity.CardDetail
 
 internal interface CardsRepository {
     suspend fun getCards(): CardsResult
+    suspend fun getCard(nmId: Long): CardDetail?
 }
 
 internal data class CardsResult(

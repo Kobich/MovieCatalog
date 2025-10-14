@@ -1,7 +1,11 @@
 package com.moviecatalog.feature.cards.impl.data
 
+import com.moviecatalog.feature.cards.api.entity.CardDetail
 import com.moviecatalog.feature.cards.impl.data.network.CardsApi
 import com.moviecatalog.feature.cards.impl.data.network.dto.CardsRequest
+import com.moviecatalog.feature.cards.impl.data.network.dto.CursorDto
+import com.moviecatalog.feature.cards.impl.data.network.dto.FilterDto
+import com.moviecatalog.feature.cards.impl.data.network.dto.SettingsDto
 import com.moviecatalog.feature.cards.impl.data.network.mapper.CardsDtoMapper
 import com.moviecatalog.feature.cards.impl.domain.CardsRepository
 import com.moviecatalog.feature.cards.impl.domain.CardsResult
@@ -20,6 +24,22 @@ internal class CardsRepositoryImpl(
                 .also {
                     println("getCards: $it")
                 }
+        }
+    }
+
+    override suspend fun getCard(imtID: Long): CardDetail? {
+        return withContext(Dispatchers.IO) {
+            val request = CardsRequest(
+                settings = SettingsDto(
+                    filter = FilterDto(imtID = imtID),
+                    cursor = CursorDto(limit = 1)
+                )
+            )
+
+            api.getCards(request)
+                .cards
+                .firstOrNull()
+                ?.let { mapper.mapDetail(it) }
         }
     }
 }

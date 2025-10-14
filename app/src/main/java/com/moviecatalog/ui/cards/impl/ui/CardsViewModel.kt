@@ -38,7 +38,14 @@ class CardsViewModel(
             is CardsScreenState.Error -> CardsScreenViewState.Error(message)
             is CardsScreenState.Success -> CardsScreenViewState.Content(
                 CardsViewState(
-                    cards = cardsState.cards.map { CardViewState(it.id) }
+                    cards = cardsState.cards.map { card ->
+                        CardViewState(
+                            id = card.id,
+                            imtID = card.imtID,
+                            title = card.title.orEmpty(),
+                            imageUrl = card.imageUrl
+                        )
+                    }
                 )
             )
         }
