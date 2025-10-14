@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.detail.impl.ui.entity
+package com.moviecatalog.ui.card.impl.ui.entity
 
 internal sealed class CardDetailsUiState {
     data object Loading : CardDetailsUiState()

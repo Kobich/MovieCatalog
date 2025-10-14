@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.detail.api
+package com.moviecatalog.ui.card.api
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

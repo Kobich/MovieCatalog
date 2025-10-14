@@ -14,7 +14,7 @@ fun CardsScreen(
     val uiState = vm.uiState.collectAsState()
     val callbacks = CardsCallbacks(
         onClick = { imtID -> navController.navigate("card/${imtID}") },
-        onCategoryChange = { category -> vm.refresh() },
+        onRefresh = { vm.refresh() },
     )
     CardsScreenView(uiState.value, callbacks)
 }

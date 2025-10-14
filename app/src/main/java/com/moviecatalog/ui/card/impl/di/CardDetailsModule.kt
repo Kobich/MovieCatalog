@@ -1,9 +1,9 @@
-package com.moviecatalog.ui.detail.impl.di
+package com.moviecatalog.ui.card.impl.di
 
-import com.moviecatalog.ui.detail.api.CardDetailsUiFeature
-import com.moviecatalog.ui.detail.impl.CardDetailsUiFeatureImpl
-import com.moviecatalog.ui.detail.impl.domain.CardDetailsInteractor
-import com.moviecatalog.ui.detail.impl.ui.CardDetailsViewModel
+import com.moviecatalog.ui.card.api.CardDetailsUiFeature
+import com.moviecatalog.ui.card.impl.CardDetailsUiFeatureImpl
+import com.moviecatalog.ui.card.impl.domain.CardDetailsInteractor
+import com.moviecatalog.ui.card.impl.ui.CardDetailsViewModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module

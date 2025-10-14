@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.detail.impl.ui
+package com.moviecatalog.ui.card.impl.ui
 
 
 import androidx.compose.foundation.Image
@@ -34,10 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.ui.detail.impl.ui.entity.CardDetailsCallbacks
-import com.moviecatalog.ui.detail.impl.ui.entity.CardDetailsUiState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardDetailsViewState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardInfoItem
+import com.moviecatalog.ui.card.impl.ui.entity.CardDetailsCallbacks
+import com.moviecatalog.ui.card.impl.ui.entity.CardDetailsUiState
+import com.moviecatalog.ui.card.impl.ui.entity.CardDetailsViewState
+import com.moviecatalog.ui.card.impl.ui.entity.CardInfoItem
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 

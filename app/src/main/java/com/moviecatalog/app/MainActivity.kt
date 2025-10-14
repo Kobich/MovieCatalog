@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.moviecatalog.core.ui.theme.MovieCatalogTheme
 import com.moviecatalog.ui.cards.api.CardsUiFeature
-import com.moviecatalog.ui.detail.api.CardDetailsUiFeature
+import com.moviecatalog.ui.card.api.CardDetailsUiFeature
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {

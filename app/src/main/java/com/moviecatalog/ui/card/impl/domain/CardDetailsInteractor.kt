@@ -1,4 +1,4 @@
-package com.moviecatalog.ui.detail.impl.domain
+package com.moviecatalog.ui.card.impl.domain
 
 import com.moviecatalog.feature.cards.api.CardsFeature
 import kotlinx.coroutines.CoroutineScope

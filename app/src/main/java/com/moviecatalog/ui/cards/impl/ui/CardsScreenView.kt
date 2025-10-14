@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.moviecatalog.R
-import com.moviecatalog.feature.movies.api.entity.Category
 import com.moviecatalog.ui.cards.impl.ui.entity.CardViewState
 import com.moviecatalog.ui.cards.impl.ui.entity.CardsCallbacks
 import com.moviecatalog.ui.cards.impl.ui.entity.CardsScreenViewState
@@ -81,42 +80,9 @@ fun CardsContentView(
     uiState: CardsViewState,
     callbacks: CardsCallbacks,
 ) {
-    val tabs = listOf("Trending", "Popular", "Top Rated")
-
     val cards = uiState.cards
 
-    Scaffold(
-        bottomBar = {
-            PrimaryTabRow(
-                selectedTabIndex = 0,
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primary)
-                    .fillMaxWidth()
-                    .navigationBarsPadding()
-            ) {
-                tabs.forEachIndexed { index, title ->
-                    Tab(
-                        text = { Text(title) },
-                        selected = 0 == index,
-                        onClick = {
-                            val category = when (index) {
-                                0 -> Category.Trending
-                                1 -> Category.Popular
-                                else -> Category.TopRated
-                            }
-                            callbacks.onCategoryChange(category)
-                        },
-                        selectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                        unselectedContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(
-                            alpha = 0.6f
-                        )
-                    )
-                }
-            }
-        }
-    ) { innerPadding ->
+    Scaffold() { innerPadding ->
         CardsCatalogList(
             items = cards,
             onClick = callbacks.onClick,
@@ -191,7 +157,7 @@ fun PreviewRenderLoadingScreen() {
         uiState = CardsScreenViewState.Loading,
         callbacks = CardsCallbacks(
             onClick = {},
-            onCategoryChange = {},
+            onRefresh = {},
         )
     )
 }
@@ -203,7 +169,7 @@ fun PreviewRenderErrorScreen() {
         uiState = CardsScreenViewState.Error("Error"),
         callbacks = CardsCallbacks(
             onClick = {},
-            onCategoryChange = {},
+            onRefresh = {},
         )
     )
 }
@@ -222,7 +188,7 @@ fun PreviewRenderMovieScreen() {
         ),
         callbacks = CardsCallbacks(
             onClick = {},
-            onCategoryChange = {},
+            onRefresh = {},
         )
     )
 }

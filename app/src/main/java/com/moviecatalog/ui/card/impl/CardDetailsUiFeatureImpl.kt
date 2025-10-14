@@ -1,9 +1,9 @@
-package com.moviecatalog.ui.detail.impl
+package com.moviecatalog.ui.card.impl
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.moviecatalog.ui.detail.api.CardDetailsUiFeature
-import com.moviecatalog.ui.detail.impl.ui.CardDetailsScreen
+import com.moviecatalog.ui.card.api.CardDetailsUiFeature
+import com.moviecatalog.ui.card.impl.ui.CardDetailsScreen
 
 internal class CardDetailsUiFeatureImpl : CardDetailsUiFeature {
 

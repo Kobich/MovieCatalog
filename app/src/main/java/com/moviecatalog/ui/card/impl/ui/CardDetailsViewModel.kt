@@ -1,14 +1,14 @@
-package com.moviecatalog.ui.detail.impl.ui
+package com.moviecatalog.ui.card.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.moviecatalog.feature.cards.api.entity.CardDetail
-import com.moviecatalog.ui.detail.impl.domain.CardDetailsInteractor
-import com.moviecatalog.ui.detail.impl.domain.CardDetailsScreenState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardCharacteristicViewState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardDetailsUiState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardDetailsViewState
-import com.moviecatalog.ui.detail.impl.ui.entity.CardInfoItem
+import com.moviecatalog.ui.card.impl.domain.CardDetailsInteractor
+import com.moviecatalog.ui.card.impl.domain.CardDetailsScreenState
+import com.moviecatalog.ui.card.impl.ui.entity.CardCharacteristicViewState
+import com.moviecatalog.ui.card.impl.ui.entity.CardDetailsUiState
+import com.moviecatalog.ui.card.impl.ui.entity.CardDetailsViewState
+import com.moviecatalog.ui.card.impl.ui.entity.CardInfoItem
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
