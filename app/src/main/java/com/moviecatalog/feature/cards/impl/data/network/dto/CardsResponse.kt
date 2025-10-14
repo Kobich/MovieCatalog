@@ -61,14 +61,9 @@ data class DimensionsDto(
 data class CharacteristicDto(
     @param:Json(name = "id") val id: Long? = null,
     @param:Json(name = "name") val name: String? = null,
-    @param:Json(name = "value") internal val _valueRaw: Any? = null,
-) {
-    val value: List<String> = when (_valueRaw) {
-        is String -> listOf(_valueRaw)
-        is List<*> -> _valueRaw.filterIsInstance<String>()
-        else -> emptyList()
-    }
-}
+    @param:Json(name = "value") val value: Any? = null,
+)
+
 @JsonClass(generateAdapter = true)
 data class SizeDto(
     @param:Json(name = "chrtID") val chrtID: Long? = null,
