@@ -1,7 +1,7 @@
 package com.moviecatalog.feature.products
 
 import com.moviecatalog.BuildConfig
-import com.moviecatalog.feature.network.impl.di.networkFeatureModule
+import com.moviecatalog.core.network.impl.di.networkFeatureModule
 import com.moviecatalog.feature.products.api.ProductFeature
 import com.moviecatalog.feature.products.impl.di.productFeatureModule
 import kotlinx.coroutines.delay

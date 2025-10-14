@@ -3,7 +3,7 @@ package com.moviecatalog.feature.cards
 import com.moviecatalog.BuildConfig
 import com.moviecatalog.feature.cards.api.CardsFeature
 import com.moviecatalog.feature.cards.impl.di.cardsFeatureModule
-import com.moviecatalog.feature.network.impl.di.networkFeatureModule
+import com.moviecatalog.core.network.impl.di.networkFeatureModule
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

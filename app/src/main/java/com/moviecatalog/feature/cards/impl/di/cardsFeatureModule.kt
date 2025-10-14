@@ -7,8 +7,8 @@ import com.moviecatalog.feature.cards.impl.data.network.CardsApi
 import com.moviecatalog.feature.cards.impl.data.network.mapper.CardsDtoMapper
 import com.moviecatalog.feature.cards.impl.domain.CardsInteractor
 import com.moviecatalog.feature.cards.impl.domain.CardsRepository
-import com.moviecatalog.feature.network.api.NetworkFeature
-import com.moviecatalog.feature.network.api.create
+import com.moviecatalog.core.network.api.NetworkFeature
+import com.moviecatalog.core.network.api.create
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 

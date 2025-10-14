@@ -1,7 +1,7 @@
 package com.moviecatalog.feature.products.impl.di
 
-import com.moviecatalog.feature.network.api.NetworkFeature
-import com.moviecatalog.feature.network.api.create
+import com.moviecatalog.core.network.api.NetworkFeature
+import com.moviecatalog.core.network.api.create
 import com.moviecatalog.feature.products.api.ProductFeature
 import com.moviecatalog.feature.products.impl.ProductFeatureImpl
 import com.moviecatalog.feature.products.impl.data.ProductRepositoryImpl

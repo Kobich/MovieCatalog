@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.network.impl.data
+package com.moviecatalog.core.network.impl.data
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

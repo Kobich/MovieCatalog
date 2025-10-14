@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.network.api
+package com.moviecatalog.core.network.api
 
 import kotlin.reflect.KClass
 

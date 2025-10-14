@@ -1,4 +1,4 @@
-package com.moviecatalog.core.ui.theme
+package com.moviecatalog.base.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,8 +1,8 @@
-package com.moviecatalog.feature.network.impl
+package com.moviecatalog.core.network.impl
 
-import com.moviecatalog.feature.network.api.NetworkFeature
-import com.moviecatalog.feature.network.impl.data.MoshiHolder
-import com.moviecatalog.feature.network.impl.data.OkHttpHolder
+import com.moviecatalog.core.network.api.NetworkFeature
+import com.moviecatalog.core.network.impl.data.MoshiHolder
+import com.moviecatalog.core.network.impl.data.OkHttpHolder
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.moviecatalog.feature.network.impl.data
+package com.moviecatalog.core.network.impl.data
 
 import com.moviecatalog.BuildConfig
 import okhttp3.Interceptor

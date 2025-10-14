@@ -1,10 +1,10 @@
-package com.moviecatalog.feature.network.impl.di
+package com.moviecatalog.core.network.impl.di
 
 import com.moviecatalog.BuildConfig
-import com.moviecatalog.feature.network.api.NetworkFeature
-import com.moviecatalog.feature.network.impl.NetworkFeatureImpl
-import com.moviecatalog.feature.network.impl.data.MoshiHolder
-import com.moviecatalog.feature.network.impl.data.OkHttpHolder
+import com.moviecatalog.core.network.api.NetworkFeature
+import com.moviecatalog.core.network.impl.NetworkFeatureImpl
+import com.moviecatalog.core.network.impl.data.MoshiHolder
+import com.moviecatalog.core.network.impl.data.OkHttpHolder
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -21,6 +21,6 @@ val networkFeatureModule = module {
     // data
     single(named(API_KEY)) { BuildConfig.WB_API_KEY }
     single(named(BASE_URL)) { BuildConfig.WB_API_BASE_URL }
-    single<OkHttpHolder> { OkHttpHolder(apiKey = get(named(API_KEY)))}
+    single<OkHttpHolder> { OkHttpHolder(apiKey = get(named(API_KEY))) }
     single<MoshiHolder> { MoshiHolder() }
 }

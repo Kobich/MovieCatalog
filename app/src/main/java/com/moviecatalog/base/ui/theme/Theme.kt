@@ -1,4 +1,4 @@
-package com.moviecatalog.core.ui.theme
+package com.moviecatalog.base.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
