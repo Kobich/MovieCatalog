@@ -83,11 +83,11 @@ internal fun MainScreen(
                 cardsUiFeature.Content(navController)
             }
             composable(
-                route = "card/{imtID}",
-                arguments = listOf(navArgument("imtID") { type = NavType.LongType }),
+                route = "card/{nmId}",
+                arguments = listOf(navArgument("nmId") { type = NavType.LongType }),
             ) { backStackEntry ->
-                val imtID = backStackEntry.arguments?.getLong("imtID") ?: return@composable
-                cardDetailsUiFeature.Content(navController, imtID)
+                val nmId = backStackEntry.arguments?.getLong("nmId") ?: return@composable
+                cardDetailsUiFeature.Content(navController, nmId)
             }
         }
     }

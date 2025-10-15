@@ -21,7 +21,7 @@ internal class CardsDtoMapper {
 
     fun mapCard(cardDto: CardDto): Card {
         return Card(
-            id = cardDto.nmID,
+            nmId = cardDto.nmID,
             imtID = cardDto.imtID,
             title = cardDto.title ?: cardDto.vendorCode,
             imageUrl = extractPrimaryImage(cardDto)
@@ -30,7 +30,7 @@ internal class CardsDtoMapper {
 
     fun mapDetail(cardDto: CardDto): CardDetail {
         return CardDetail(
-            id = cardDto.nmID,
+            nmId = cardDto.nmID,
             title = cardDto.title ?: cardDto.vendorCode ?: cardDto.nmID.toString(),
             vendorCode = cardDto.vendorCode,
             brand = cardDto.brand,

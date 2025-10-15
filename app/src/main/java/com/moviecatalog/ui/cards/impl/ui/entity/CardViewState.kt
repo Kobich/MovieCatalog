@@ -12,7 +12,7 @@ data class CardsViewState(
 )
 
 data class CardViewState(
-    val id: Long,
+    val nmId: Long,
     val imtID: Long,
     val title: String,
     val imageUrl: String?,

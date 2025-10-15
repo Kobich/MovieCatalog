@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 internal class CardDetailsViewModel(
-    imtID: Long,
+    nmId: Long,
     private val interactor: CardDetailsInteractor,
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ internal class CardDetailsViewModel(
         )
 
     init {
-        interactor.load(imtID)
+        interactor.load(nmId)
     }
 
     private fun CardDetailsScreenState.toUiState(): CardDetailsUiState {
@@ -42,7 +42,7 @@ internal class CardDetailsViewModel(
     private fun CardDetail.toViewState(): CardDetailsViewState {
         val images = photos.ifEmpty { emptyList() }
         val infoItems = buildList<CardInfoItem> {
-            id.takeIf { it != 0L }?.let {
+            nmId.takeIf { it != 0L }?.let {
                 add(CardInfoItem(title = "Артикул WB", value = "$it"))
             }
             brand?.takeIf { it.isNotBlank() }?.let {
@@ -75,7 +75,7 @@ internal class CardDetailsViewModel(
         }
 
         return CardDetailsViewState(
-            id = id,
+            nmId = nmId,
             title = title,
             vendorCode = vendorCode,
             brand = brand,

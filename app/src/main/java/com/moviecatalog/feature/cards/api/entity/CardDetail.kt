@@ -1,7 +1,7 @@
 package com.moviecatalog.feature.cards.api.entity
 
 data class CardDetail(
-    val id: Long,
+    val nmId: Long,
     val title: String,
     val vendorCode: String?,
     val brand: String?,
