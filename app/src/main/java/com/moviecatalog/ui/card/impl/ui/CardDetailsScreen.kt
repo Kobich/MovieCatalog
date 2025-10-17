@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
@@ -47,8 +45,8 @@ import org.koin.core.parameter.parametersOf
 @Composable
 internal fun CardDetailsScreen(
     navController: NavHostController,
-    imtID: Long,
-    vm: CardDetailsViewModel = koinViewModel(parameters = { parametersOf(imtID) }),
+    nmId: Long,
+    vm: CardDetailsViewModel = koinViewModel(parameters = { parametersOf(nmId) }),
 ) {
     val uiState by vm.uiState.collectAsState()
 

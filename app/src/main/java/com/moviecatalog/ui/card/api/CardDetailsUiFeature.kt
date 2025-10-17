@@ -5,5 +5,5 @@ import androidx.navigation.NavHostController
 
 interface CardDetailsUiFeature {
     @Composable
-    fun Content(navController: NavHostController, cardId: Long)
+    fun Content(navController: NavHostController, nmId: Long)
 }

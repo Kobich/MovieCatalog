@@ -13,9 +13,9 @@ val cardDetailsModule = module {
 
     factoryOf(::CardDetailsInteractor)
 
-    viewModel { (imtID: Long) ->
+    viewModel { (nmId: Long) ->
         CardDetailsViewModel(
-            imtID = imtID,
+            nmId = nmId,
             interactor = get()
         )
     }
