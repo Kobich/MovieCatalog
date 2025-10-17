@@ -10,7 +10,7 @@ internal class CardsInteractor(
         return repo.getCards().cards
     }
 
-    suspend fun getCard(imtID: Long): CardDetail? {
-        return repo.getCard(imtID)
+    suspend fun getCard(nmId: Long): CardDetail? {
+        return repo.getCard(nmId)
     }
 }

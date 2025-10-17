@@ -7,7 +7,7 @@ internal sealed class CardDetailsUiState {
 }
 
 internal data class CardDetailsViewState(
-    val id: Long,
+    val nmId: Long,
     val title: String,
     val vendorCode: String?,
     val brand: String?,

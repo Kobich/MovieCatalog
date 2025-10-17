@@ -1,6 +1,6 @@
 package com.moviecatalog.ui.cards.impl.ui.entity
 
 data class CardsCallbacks(
-    val onClick: (imtID: Long) -> Unit,
+    val onClick: (nmId: Long) -> Unit,
     val onRefresh: () -> Unit,
 )

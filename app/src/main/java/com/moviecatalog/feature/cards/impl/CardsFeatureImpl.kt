@@ -13,8 +13,8 @@ internal class CardsFeatureImpl(
         return cardsInteractor.getCards()
     }
 
-    override suspend fun getCard(imtID: Long): CardDetail? {
-        return cardsInteractor.getCard(imtID)
+    override suspend fun getCard(nmId: Long): CardDetail? {
+        return cardsInteractor.getCard(nmId)
     }
 
 }
