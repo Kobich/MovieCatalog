@@ -62,6 +62,9 @@ android {
 
 dependencies {
 
+    //Logging
+    implementation(libs.timber)
+
     //DI
     implementation(libs.koin.core)
     implementation(libs.koin.android)
