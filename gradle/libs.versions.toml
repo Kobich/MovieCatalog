@@ -9,12 +9,13 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
 composeBom = "2025.10.00"
-loggingInterceptor = "5.2.0"
+loggingInterceptor = "5.2.1"
 moshi = "1.15.2"
 navigationCompose = "2.9.5"
 koin = "4.1.1"
 koinCompose = "4.1.1"
 retrofit = "3.0.0"
+timber = "5.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "mosh
 moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
 moshi-retrofit = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 #endregion
 
 [plugins]
