@@ -1,6 +1,6 @@
 package com.moviecatalog.ui.cards.impl.domain
 
-import com.moviecatalog.feature.cards.api.CardsFeature
+import com.example.feature.cards.api.CardsFeature
 import com.moviecatalog.ui.cards.impl.domain.entity.CardsScreenState
 import com.moviecatalog.ui.cards.impl.domain.entity.CardsState
 import kotlinx.coroutines.CoroutineScope

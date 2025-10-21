@@ -2,7 +2,7 @@ package com.moviecatalog.ui.card.impl.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.moviecatalog.feature.cards.api.entity.CardDetail
+import com.example.feature.cards.api.entity.CardDetail
 import com.moviecatalog.ui.card.impl.domain.CardDetailsInteractor
 import com.moviecatalog.ui.card.impl.domain.CardDetailsScreenState
 import com.moviecatalog.ui.card.impl.ui.entity.CardCharacteristicViewState

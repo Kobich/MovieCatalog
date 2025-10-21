@@ -62,6 +62,12 @@ android {
 
 dependencies {
 
+    //Project modules
+    implementation(project(":core:network:impl"))
+    implementation(project(":feature:cards:impl"))
+    implementation(project(":feature:cards:api"))
+
+
     //Logging
     implementation(libs.timber)
 

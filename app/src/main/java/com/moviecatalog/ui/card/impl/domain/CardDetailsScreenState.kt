@@ -1,6 +1,6 @@
 package com.moviecatalog.ui.card.impl.domain
 
-import com.moviecatalog.feature.cards.api.entity.CardDetail
+import com.example.feature.cards.api.entity.CardDetail
 
 internal sealed interface CardDetailsScreenState {
     data object Loading : CardDetailsScreenState
