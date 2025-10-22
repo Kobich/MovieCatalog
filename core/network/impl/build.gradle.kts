@@ -22,7 +22,7 @@ val wbApiBaseUrl =
     localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api.wildberries.ru/"
 
 android {
-    namespace = "com.example.core.network.impl"
+    namespace = "com.wbprofit.core.network.impl"
     compileSdk = 36
 
     defaultConfig {
