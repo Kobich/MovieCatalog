@@ -1,6 +1,5 @@
 package com.wbprofit.ui.cards.impl.ui.entity
 
-
 sealed class CardsScreenViewState {
     data object Loading : CardsScreenViewState()
     data class Content(val state: CardsViewState) : CardsScreenViewState()
@@ -17,5 +16,3 @@ data class CardViewState(
     val title: String,
     val imageUrl: String?,
 )
-
-

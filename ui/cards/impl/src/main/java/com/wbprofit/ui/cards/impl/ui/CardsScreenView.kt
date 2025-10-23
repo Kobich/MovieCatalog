@@ -75,7 +75,6 @@ fun CardsScreenView(
     }
 }
 
-
 @Composable
 fun CardsContentView(
     uiState: CardsViewState,
@@ -95,7 +94,6 @@ fun CardsContentView(
         )
     }
 }
-
 
 @Composable
 fun CardCatalogCard(

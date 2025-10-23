@@ -1,6 +1,5 @@
 package com.wbprofit.ui.card.impl.ui
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +41,8 @@ import com.wbprofit.ui.card.impl.ui.entity.CardInfoItem
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+const val CARD_SIZE = 3f / 4f
+
 @Composable
 internal fun CardDetailsScreen(
     navController: NavHostController,
@@ -71,8 +72,7 @@ internal fun CardDetailsScreenView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primary)
-                    .statusBarsPadding()
-                    ,
+                    .statusBarsPadding(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = callbacks.onBackClick) {
@@ -105,7 +105,6 @@ internal fun CardDetailsScreenView(
                     )
                 }
             }
-
             CardDetailsUiState.Loading -> {
                 Box(
                     modifier = Modifier
@@ -120,7 +119,6 @@ internal fun CardDetailsScreenView(
                     )
                 }
             }
-
             is CardDetailsUiState.Content -> {
                 CardDetailsContent(
                     state = uiState.state,
@@ -166,14 +164,14 @@ private fun CardDetailsHeader(
             contentDescription = state.title,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(3f / 4f),
+                .aspectRatio(CARD_SIZE),
             contentScale = ContentScale.Crop
         )
     } else {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(3f / 4f)
+                .aspectRatio(CARD_SIZE)
                 .background(MaterialTheme.colorScheme.surfaceVariant),
             contentAlignment = Alignment.Center
         ) {
@@ -184,13 +182,11 @@ private fun CardDetailsHeader(
         }
     }
 
-
-        Text(
-            text = state.title,
-            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-            color = MaterialTheme.colorScheme.onBackground,
-        )
-
+    Text(
+        text = state.title,
+        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colorScheme.onBackground,
+    )
 }
 
 @Composable

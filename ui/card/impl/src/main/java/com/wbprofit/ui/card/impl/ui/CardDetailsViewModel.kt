@@ -58,7 +58,7 @@ internal class CardDetailsViewModel(
                 add(CardInfoItem(title = "Высота", value = "$it см"))
             }
             dimensions?.weightBrutto?.let {
-                add(CardInfoItem(title = "Вес", value = "${it} кг"))
+                add(CardInfoItem(title = "Вес", value = "$it кг"))
             }
         }
 

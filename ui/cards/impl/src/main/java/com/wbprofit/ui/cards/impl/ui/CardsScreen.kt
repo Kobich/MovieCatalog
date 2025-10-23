@@ -2,9 +2,9 @@ package com.wbprofit.ui.cards.impl.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import com.wbprofit.ui.cards.impl.ui.entity.CardsCallbacks
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CardsScreen(
@@ -13,7 +13,7 @@ fun CardsScreen(
 ) {
     val uiState = vm.uiState.collectAsState()
     val callbacks = CardsCallbacks(
-        onClick = { nmId -> navController.navigate("card/${nmId}") },
+        onClick = { nmId -> navController.navigate("card/$nmId") },
         onRefresh = { vm.refresh() },
     )
     CardsScreenView(uiState.value, callbacks)

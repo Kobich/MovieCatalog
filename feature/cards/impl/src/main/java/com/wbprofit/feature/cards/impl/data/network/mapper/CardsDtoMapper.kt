@@ -12,7 +12,7 @@ import com.wbprofit.feature.cards.impl.domain.CursorResult
 
 internal class CardsDtoMapper {
 
-    fun map(cardsResponseDto: CardsResponseDto) : CardsResult {
+    fun map(cardsResponseDto: CardsResponseDto): CardsResult {
         return CardsResult(
             cards = cardsResponseDto.cards.map(::mapCard),
             cursor = mapCursor(cardsResponseDto.cursor)
@@ -59,7 +59,7 @@ internal class CardsDtoMapper {
         )
     }
 
-    private fun mapCursor(cursorResultDto: CursorResultDto) : CursorResult {
+    private fun mapCursor(cursorResultDto: CursorResultDto): CursorResult {
         return CursorResult(
             nmID = cursorResultDto.nmID,
             total = cursorResultDto.total

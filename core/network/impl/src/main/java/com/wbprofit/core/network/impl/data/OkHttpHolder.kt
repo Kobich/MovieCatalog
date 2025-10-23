@@ -10,7 +10,7 @@ internal const val HEADER_AUTHORIZATION = "Authorization"
 internal class OkHttpHolder(
     apiKey: String
 ) {
-    val client : OkHttpClient = OkHttpClient.Builder()
+    val client: OkHttpClient = OkHttpClient.Builder()
         .apply {
 
             val authInterceptor = Interceptor { chain ->
