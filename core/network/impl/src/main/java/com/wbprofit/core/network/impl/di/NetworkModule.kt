@@ -16,7 +16,7 @@ val networkFeatureModule = module {
         NetworkFeatureImpl(
             okHttpHolder = get(),
             moshiHolder = get(),
-            baseUrl = get(named(BASE_URL))
+            baseUrl = get(named(BASE_URL)),
         )
     }
 

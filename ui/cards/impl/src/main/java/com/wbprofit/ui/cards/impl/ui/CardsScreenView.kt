@@ -47,7 +47,7 @@ fun CardsScreenView(
                     .fillMaxSize()
                     .imePadding()
                     .background(MaterialTheme.colorScheme.background),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Text(text = "Error: ${uiState.message}")
             }
@@ -60,7 +60,7 @@ fun CardsScreenView(
                     .fillMaxSize()
                     .imePadding()
                     .background(MaterialTheme.colorScheme.background),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Text(text = "Loading...")
             }
@@ -69,7 +69,7 @@ fun CardsScreenView(
         is CardsScreenViewState.Content -> {
             CardsContentView(
                 uiState = uiState.state,
-                callbacks = callbacks
+                callbacks = callbacks,
             )
         }
     }
@@ -84,13 +84,14 @@ fun CardsContentView(
 
     Scaffold(
         modifier = Modifier
-            .statusBarsPadding()
+            .statusBarsPadding(),
     ) { innerPadding ->
         CardsCatalogList(
             items = cards,
             onClick = callbacks.onClick,
-            modifier = Modifier.padding(innerPadding)
-                .fillMaxSize()
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
         )
     }
 }
@@ -98,14 +99,14 @@ fun CardsContentView(
 @Composable
 fun CardCatalogCard(
     card: CardViewState,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
             .clickable { onClick() },
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AsyncImage(
             model = card.imageUrl,
@@ -117,7 +118,7 @@ fun CardCatalogCard(
                 .fillMaxWidth()
                 .height(180.dp)
                 .clip(RoundedCornerShape(12.dp)),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Text(
@@ -126,7 +127,7 @@ fun CardCatalogCard(
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 4.dp)
+            modifier = Modifier.padding(top = 4.dp),
         )
     }
 }
@@ -135,7 +136,7 @@ fun CardCatalogCard(
 fun CardsCatalogList(
     items: List<CardViewState>,
     onClick: (nmId: Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
@@ -147,7 +148,7 @@ fun CardsCatalogList(
                 val card = items[index]
                 CardCatalogCard(card, onClick = { onClick(card.nmId) })
             }
-        }
+        },
     )
 }
 
@@ -159,7 +160,7 @@ fun PreviewRenderLoadingScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
-        )
+        ),
     )
 }
 
@@ -171,7 +172,7 @@ fun PreviewRenderErrorScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
-        )
+        ),
     )
 }
 
@@ -190,6 +191,6 @@ fun PreviewRenderMovieScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
-        )
+        ),
     )
 }

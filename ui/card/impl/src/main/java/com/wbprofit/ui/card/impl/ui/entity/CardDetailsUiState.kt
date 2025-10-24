@@ -2,7 +2,9 @@ package com.wbprofit.ui.card.impl.ui.entity
 
 internal sealed class CardDetailsUiState {
     data object Loading : CardDetailsUiState()
+
     data class Content(val state: CardDetailsViewState) : CardDetailsUiState()
+
     data class Error(val message: String) : CardDetailsUiState()
 }
 

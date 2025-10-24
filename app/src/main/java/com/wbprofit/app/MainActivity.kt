@@ -9,7 +9,6 @@ import com.wbprofit.ui.main.api.MainUiFeature
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
-
     private val mainUiFeature by inject<MainUiFeature>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

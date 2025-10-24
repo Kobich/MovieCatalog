@@ -18,7 +18,6 @@ internal class CardDetailsViewModel(
     nmId: Long,
     private val interactor: CardDetailsInteractor,
 ) : ViewModel() {
-
     val uiState: StateFlow<CardDetailsUiState> = interactor.state
         .map { it.toUiState() }
         .stateIn(
@@ -31,12 +30,10 @@ internal class CardDetailsViewModel(
         interactor.load(nmId)
     }
 
-    private fun CardDetailsScreenState.toUiState(): CardDetailsUiState {
-        return when (this) {
-            CardDetailsScreenState.Loading -> CardDetailsUiState.Loading
-            is CardDetailsScreenState.Error -> CardDetailsUiState.Error(message)
-            is CardDetailsScreenState.Success -> CardDetailsUiState.Content(card.toViewState())
-        }
+    private fun CardDetailsScreenState.toUiState(): CardDetailsUiState = when (this) {
+        CardDetailsScreenState.Loading -> CardDetailsUiState.Loading
+        is CardDetailsScreenState.Error -> CardDetailsUiState.Error(message)
+        is CardDetailsScreenState.Success -> CardDetailsUiState.Content(card.toViewState())
     }
 
     private fun CardDetail.toViewState(): CardDetailsViewState {
@@ -67,7 +64,7 @@ internal class CardDetailsViewModel(
             if (characteristic.name.isNotBlank() && value.isNotBlank()) {
                 CardCharacteristicViewState(
                     title = characteristic.name,
-                    value = value
+                    value = value,
                 )
             } else {
                 null

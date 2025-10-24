@@ -12,7 +12,6 @@ import timber.log.Timber
 internal class CardDetailsInteractor(
     private val cardsFeature: CardsFeature,
 ) {
-
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private var job: Job? = null
 
@@ -27,8 +26,7 @@ internal class CardDetailsInteractor(
                 .onSuccess { card ->
                     state.value = card?.let { CardDetailsScreenState.Success(it) }
                         ?: CardDetailsScreenState.Error(CARD_NOT_FOUND_MESSAGE)
-                }
-                .onFailure { throwable ->
+                }.onFailure { throwable ->
                     Timber.Forest.e(throwable, "Failed to load card %d", nmId)
                     state.value = CardDetailsScreenState.Error(
                         throwable.message ?: GENERIC_ERROR_MESSAGE,

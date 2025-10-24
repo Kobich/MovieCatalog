@@ -5,12 +5,13 @@ import com.wbprofit.feature.cards.api.entity.CardDetail
 
 internal interface CardsRepository {
     suspend fun getCards(): CardsResult
+
     suspend fun getCard(nmId: Long): CardDetail?
 }
 
 internal data class CardsResult(
     val cards: List<Card>,
-    val cursor: CursorResult
+    val cursor: CursorResult,
 )
 
 internal data class CursorResult(

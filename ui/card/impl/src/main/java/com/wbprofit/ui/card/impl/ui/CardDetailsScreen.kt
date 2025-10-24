@@ -73,7 +73,7 @@ internal fun CardDetailsScreenView(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primary)
                     .statusBarsPadding(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 IconButton(onClick = callbacks.onBackClick) {
                     Icon(
@@ -85,10 +85,10 @@ internal fun CardDetailsScreenView(
                 Text(
                     text = "Карточка",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
-        }
+        },
     ) { innerPadding ->
         when (uiState) {
             is CardDetailsUiState.Error -> {
@@ -97,11 +97,11 @@ internal fun CardDetailsScreenView(
                         .padding(innerPadding)
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "Ошибка: ${uiState.message}",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
@@ -111,11 +111,11 @@ internal fun CardDetailsScreenView(
                         .padding(innerPadding)
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "Загрузка...",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
@@ -124,7 +124,7 @@ internal fun CardDetailsScreenView(
                     state = uiState.state,
                     modifier = Modifier
                         .padding(innerPadding)
-                        .fillMaxSize()
+                        .fillMaxSize(),
                 )
             }
         }
@@ -141,7 +141,7 @@ private fun CardDetailsContent(
             .verticalScroll(rememberScrollState())
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         CardDetailsHeader(state)
         CardDetailsInfo(state.infoItems)
@@ -165,7 +165,7 @@ private fun CardDetailsHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(CARD_SIZE),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
     } else {
         Box(
@@ -173,11 +173,11 @@ private fun CardDetailsHeader(
                 .fillMaxWidth()
                 .aspectRatio(CARD_SIZE)
                 .background(MaterialTheme.colorScheme.surfaceVariant),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Image(
                 painter = painterResource(R.drawable.empty_card_icon),
-                contentDescription = null
+                contentDescription = null,
             )
         }
     }
@@ -196,7 +196,7 @@ private fun CardDetailsInfo(
     if (infoItems.isEmpty()) return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Параметры",
@@ -221,7 +221,7 @@ private fun CardDetailsDescription(
     val text = description?.takeIf { it.isNotBlank() } ?: return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Описание",
@@ -243,7 +243,7 @@ private fun CardDetailsCharacteristics(
     if (state.characteristics.isEmpty()) return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Характеристики",

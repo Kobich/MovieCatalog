@@ -16,7 +16,7 @@ val cardDetailsModule = module {
     viewModel { (nmId: Long) ->
         CardDetailsViewModel(
             nmId = nmId,
-            interactor = get()
+            interactor = get(),
         )
     }
 }
