@@ -21,11 +21,11 @@ val wbApiKey = localProperties.getProperty("WB_API_KEY") ?: ""
 val wbApiBaseUrl = localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api.wildberries.ru/"
 
 android {
-    namespace = "com.moviecatalog"
+    namespace = "com.wbprofit"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.moviecatalog"
+        applicationId = "com.wbprofit"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -61,6 +61,21 @@ android {
 }
 
 dependencies {
+
+    //Project modules
+    implementation(project(":core:network:impl"))
+    implementation(project(":feature:cards:impl"))
+    implementation(project(":feature:cards:api"))
+
+    implementation(project(":ui:main:impl"))
+    implementation(project(":ui:card:impl"))
+    implementation(project(":ui:cards:impl"))
+    implementation(project(":ui:main:api"))
+    implementation(project(":ui:card:api"))
+    implementation(project(":ui:cards:api"))
+
+    implementation(project(":base:ui"))
+
 
     //Logging
     implementation(libs.timber)
