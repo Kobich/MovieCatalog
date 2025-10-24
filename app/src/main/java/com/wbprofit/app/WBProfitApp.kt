@@ -18,6 +18,5 @@ class WBProfitApp : Application() {
             androidContext(this@WBProfitApp)
             modules(appModules)
         }
-
     }
 }

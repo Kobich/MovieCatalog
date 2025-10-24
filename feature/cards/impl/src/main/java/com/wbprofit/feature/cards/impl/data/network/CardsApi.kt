@@ -6,9 +6,8 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface CardsApi {
-
     @POST("/content/v2/get/cards/list")
     suspend fun getCards(
-        @Body body: CardsRequest
+        @Body body: CardsRequest,
     ): CardsResponseDto
 }

@@ -9,14 +9,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class CardsInteractor(
     private val cardsFeature: CardsFeature,
 ) {
-
     private var job: Job? = null
     private val coroutineScope = CoroutineScope(
-        SupervisorJob() + Dispatchers.Main
+        SupervisorJob() + Dispatchers.Main,
     )
 
     val state: MutableStateFlow<CardsScreenState> =
@@ -30,20 +30,21 @@ class CardsInteractor(
         job?.cancel()
         job = coroutineScope.launch {
             state.value = CardsScreenState.Loading
-            try {
-                val cards = cardsFeature.getCards()
-                state.value = CardsScreenState.Success(
-                    CardsState(
-                        cards = cards,
+            runCatching { cardsFeature.getCards() }
+                .onSuccess { cards ->
+                    state.value = CardsScreenState.Success(
+                        CardsState(cards = cards),
                     )
-                )
-            } catch (e: Exception) {
-                state.value = CardsScreenState.Error(e.message ?: "Unknown error")
-            }
+                }.onFailure { throwable ->
+                    Timber.Forest.e(throwable, "Failed to load cards")
+                    state.value = CardsScreenState.Error(
+                        throwable.message ?: GENERIC_ERROR_MESSAGE,
+                    )
+                }
         }
     }
 
-
-
-
+    private companion object {
+        const val GENERIC_ERROR_MESSAGE = "Unable to load cards"
+    }
 }

@@ -16,30 +16,27 @@ internal class CardsRepositoryImpl(
     private val api: CardsApi,
     private val mapper: CardsDtoMapper,
 ) : CardsRepository {
-
-    override suspend fun getCards(): CardsResult {
-        return withContext(Dispatchers.IO) {
-            api.getCards(CardsRequest())
-                .let { mapper.map(it) }
-                .also {
-                    println("getCards: $it")
-                }
-        }
+    override suspend fun getCards(): CardsResult = withContext(Dispatchers.IO) {
+        api
+            .getCards(CardsRequest())
+            .let { mapper.map(it) }
+            .also {
+                println("getCards: $it")
+            }
     }
 
-    override suspend fun getCard(nmId: Long): CardDetail? {
-        return withContext(Dispatchers.IO) {
-            val request = CardsRequest(
-                settings = SettingsDto(
-                    filter = FilterDto(textSearch = nmId.toString()),
-                    cursor = CursorDto(limit = 1)
-                )
-            )
+    override suspend fun getCard(nmId: Long): CardDetail? = withContext(Dispatchers.IO) {
+        val request = CardsRequest(
+            settings = SettingsDto(
+                filter = FilterDto(textSearch = nmId.toString()),
+                cursor = CursorDto(limit = 1),
+            ),
+        )
 
-            api.getCards(request)
-                .cards
-                .firstOrNull()
-                ?.let { mapper.mapDetail(it) }
-        }
+        api
+            .getCards(request)
+            .cards
+            .firstOrNull()
+            ?.let { mapper.mapDetail(it) }
     }
 }

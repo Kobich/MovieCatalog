@@ -4,7 +4,9 @@ import com.wbprofit.feature.cards.api.entity.Card
 
 sealed interface CardsScreenState {
     data object Loading : CardsScreenState
+
     data class Success(val cardsState: CardsState) : CardsScreenState
+
     data class Error(val message: String) : CardsScreenState
 }
 

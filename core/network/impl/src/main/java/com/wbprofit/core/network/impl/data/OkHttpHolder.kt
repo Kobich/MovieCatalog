@@ -8,9 +8,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 internal const val HEADER_AUTHORIZATION = "Authorization"
 
 internal class OkHttpHolder(
-    apiKey: String
+    apiKey: String,
 ) {
-    val client : OkHttpClient = OkHttpClient.Builder()
+    val client: OkHttpClient = OkHttpClient
+        .Builder()
         .apply {
 
             val authInterceptor = Interceptor { chain ->
@@ -28,6 +29,5 @@ internal class OkHttpHolder(
             if (BuildConfig.DEBUG) {
                 addInterceptor(loggingInterceptor)
             }
-        }
-        .build()
+        }.build()
 }

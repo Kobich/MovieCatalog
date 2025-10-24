@@ -1,6 +1,5 @@
 package com.wbprofit.ui.card.impl.ui
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +41,8 @@ import com.wbprofit.ui.card.impl.ui.entity.CardInfoItem
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+const val CARD_SIZE = 3f / 4f
+
 @Composable
 internal fun CardDetailsScreen(
     navController: NavHostController,
@@ -71,9 +72,8 @@ internal fun CardDetailsScreenView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primary)
-                    .statusBarsPadding()
-                    ,
-                verticalAlignment = Alignment.CenterVertically
+                    .statusBarsPadding(),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 IconButton(onClick = callbacks.onBackClick) {
                     Icon(
@@ -85,10 +85,10 @@ internal fun CardDetailsScreenView(
                 Text(
                     text = "Карточка",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
-        }
+        },
     ) { innerPadding ->
         when (uiState) {
             is CardDetailsUiState.Error -> {
@@ -97,36 +97,34 @@ internal fun CardDetailsScreenView(
                         .padding(innerPadding)
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "Ошибка: ${uiState.message}",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
-
             CardDetailsUiState.Loading -> {
                 Box(
                     modifier = Modifier
                         .padding(innerPadding)
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "Загрузка...",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }
-
             is CardDetailsUiState.Content -> {
                 CardDetailsContent(
                     state = uiState.state,
                     modifier = Modifier
                         .padding(innerPadding)
-                        .fillMaxSize()
+                        .fillMaxSize(),
                 )
             }
         }
@@ -143,7 +141,7 @@ private fun CardDetailsContent(
             .verticalScroll(rememberScrollState())
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         CardDetailsHeader(state)
         CardDetailsInfo(state.infoItems)
@@ -166,31 +164,29 @@ private fun CardDetailsHeader(
             contentDescription = state.title,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(3f / 4f),
-            contentScale = ContentScale.Crop
+                .aspectRatio(CARD_SIZE),
+            contentScale = ContentScale.Crop,
         )
     } else {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(3f / 4f)
+                .aspectRatio(CARD_SIZE)
                 .background(MaterialTheme.colorScheme.surfaceVariant),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Image(
                 painter = painterResource(R.drawable.empty_card_icon),
-                contentDescription = null
+                contentDescription = null,
             )
         }
     }
 
-
-        Text(
-            text = state.title,
-            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-            color = MaterialTheme.colorScheme.onBackground,
-        )
-
+    Text(
+        text = state.title,
+        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colorScheme.onBackground,
+    )
 }
 
 @Composable
@@ -200,7 +196,7 @@ private fun CardDetailsInfo(
     if (infoItems.isEmpty()) return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Параметры",
@@ -225,7 +221,7 @@ private fun CardDetailsDescription(
     val text = description?.takeIf { it.isNotBlank() } ?: return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Описание",
@@ -247,7 +243,7 @@ private fun CardDetailsCharacteristics(
     if (state.characteristics.isEmpty()) return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "Характеристики",

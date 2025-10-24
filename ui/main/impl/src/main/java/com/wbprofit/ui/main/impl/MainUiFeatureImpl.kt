@@ -10,7 +10,6 @@ internal class MainUiFeatureImpl(
     private val cardsUiFeature: CardsUiFeature,
     private val cardDetailsUiFeature: CardDetailsUiFeature,
 ) : MainUiFeature {
-
     @Composable
     override fun Content() {
         MainScreen(

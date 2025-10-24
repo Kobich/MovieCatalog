@@ -12,11 +12,13 @@ private const val API_KEY = "api_key"
 private const val BASE_URL = "base_url"
 
 val networkFeatureModule = module {
-    single<NetworkFeature> { NetworkFeatureImpl(
-        okHttpHolder = get(),
-        moshiHolder = get(),
-        baseUrl = get(named(BASE_URL))
-    ) }
+    single<NetworkFeature> {
+        NetworkFeatureImpl(
+            okHttpHolder = get(),
+            moshiHolder = get(),
+            baseUrl = get(named(BASE_URL)),
+        )
+    }
 
     // data
     single(named(API_KEY)) { BuildConfig.WB_API_KEY }

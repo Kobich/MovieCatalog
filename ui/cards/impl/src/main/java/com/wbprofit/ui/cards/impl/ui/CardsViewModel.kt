@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.stateIn
 class CardsViewModel(
     private val interactor: CardsInteractor,
 ) : ViewModel() {
-
     val uiState: StateFlow<CardsScreenViewState> = interactor.state
         .map { it.map() }
         .stateIn(
@@ -32,22 +31,20 @@ class CardsViewModel(
         interactor.refresh()
     }
 
-    private fun CardsScreenState.map(): CardsScreenViewState {
-        return when (this) {
-            is CardsScreenState.Loading -> CardsScreenViewState.Loading
-            is CardsScreenState.Error -> CardsScreenViewState.Error(message)
-            is CardsScreenState.Success -> CardsScreenViewState.Content(
-                CardsViewState(
-                    cards = cardsState.cards.map { card ->
-                        CardViewState(
-                            nmId = card.nmId,
-                            imtID = card.imtID,
-                            title = card.title.orEmpty(),
-                            imageUrl = card.imageUrl
-                        )
-                    }
-                )
-            )
-        }
+    private fun CardsScreenState.map(): CardsScreenViewState = when (this) {
+        is CardsScreenState.Loading -> CardsScreenViewState.Loading
+        is CardsScreenState.Error -> CardsScreenViewState.Error(message)
+        is CardsScreenState.Success -> CardsScreenViewState.Content(
+            CardsViewState(
+                cards = cardsState.cards.map { card ->
+                    CardViewState(
+                        nmId = card.nmId,
+                        imtID = card.imtID,
+                        title = card.title.orEmpty(),
+                        imageUrl = card.imageUrl,
+                    )
+                },
+            ),
+        )
     }
 }
