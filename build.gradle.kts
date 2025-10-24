@@ -1,5 +1,8 @@
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import dev.detekt.gradle.Detekt
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -8,48 +11,35 @@ plugins {
     id("com.google.devtools.ksp") version "2.2.20-2.0.3" apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
-    alias(libs.plugins.detekt) apply false
+    id("dev.detekt") version libs.versions.detekt.get()
 }
+
+
+val detektExcludedModules = setOf(":base:ui")
+val detektConfigFile = rootProject.file("detekt.yml")
+val detektExcludes = listOf("**/build/**", "**/generated/**")
+val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+val detektKtlintWrapper = versionCatalog.findLibrary("detekt-rules-ktlint-wrapper").get()
 
 subprojects {
+    if (path in detektExcludedModules) return@subprojects
+    apply(plugin = "dev.detekt")
+    detekt {
+        buildUponDefaultConfig = true
+        autoCorrect = true
+        config.setFrom(detektConfigFile)
+    }
 
-    val excludedModules = setOf(
-        ":base:ui",
-    )
+    dependencies { detektPlugins(detektKtlintWrapper) }
 
-    if (project.path !in excludedModules) {
-
-        apply(plugin = "io.gitlab.arturbosch.detekt")
-        
-        afterEvaluate {
-            dependencies.add(
-                "detektPlugins",
-                "io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8"
-            )
+    tasks.withType<Detekt>().configureEach {
+        reports {
+            html.required.set(true)
+            xml.required.set(false)
         }
 
-        extensions.configure<DetektExtension> {
-            config.setFrom(files("$rootDir/detekt.yml"))
-            buildUponDefaultConfig = true
-            autoCorrect = true
-        }
-
-        tasks.withType<Detekt>().configureEach {
-            autoCorrect = true
-            config.from(files(rootDir.resolve("detekt.yml")))
-            buildUponDefaultConfig = true
-
-
-            reports {
-                html.required.set(true)
-                xml.required.set(false)
-                txt.required.set(true)
-            }
-
-            setSource(files("src/main/java", "src/main/kotlin"))
-            include("**/*.kt")
-            exclude("**/build/**", "**/generated/**")
-        }
+        setSource(files("src/main/java", "src/main/kotlin"))
+        include("**/*.kt")
+        exclude(detektExcludes)
     }
 }
-
