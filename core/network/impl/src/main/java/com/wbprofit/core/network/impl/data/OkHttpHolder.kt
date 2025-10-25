@@ -8,15 +8,19 @@ import okhttp3.logging.HttpLoggingInterceptor
 internal const val HEADER_AUTHORIZATION = "Authorization"
 
 internal class OkHttpHolder(
-    apiKey: String,
+    private val apiKeyProvider: () -> String?,
 ) {
     val client: OkHttpClient = OkHttpClient
         .Builder()
         .apply {
 
             val authInterceptor = Interceptor { chain ->
-                val requestBuilder = chain.request().newBuilder()
-                if (apiKey.isNotBlank()) {
+                val originalRequest = chain.request()
+                val hasAuthorization = originalRequest.header(HEADER_AUTHORIZATION) != null
+
+                val requestBuilder = originalRequest.newBuilder()
+                val apiKey = apiKeyProvider().orEmpty()
+                if (!hasAuthorization && apiKey.isNotBlank()) {
                     requestBuilder.addHeader(HEADER_AUTHORIZATION, apiKey)
                 }
                 chain.proceed(requestBuilder.build())

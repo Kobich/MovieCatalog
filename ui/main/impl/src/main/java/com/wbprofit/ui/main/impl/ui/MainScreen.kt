@@ -28,6 +28,7 @@ import com.wbprofit.ui.main.impl.ui.entity.TabItem
 internal fun MainScreen(
     cardsUiFeature: CardsUiFeature,
     cardDetailsUiFeature: CardDetailsUiFeature,
+    onLogout: () -> Unit,
 ) {
     val navController = rememberNavController()
     val tabs = TabItem.items
@@ -77,10 +78,10 @@ internal fun MainScreen(
                 .fillMaxSize(),
         ) {
             composable(TabItem.Catalog.route) {
-                cardsUiFeature.Content(navController)
+                cardsUiFeature.Content(navController, onLogout)
             }
             composable(TabItem.Analytics.route) {
-                cardsUiFeature.Content(navController)
+                cardsUiFeature.Content(navController, onLogout)
             }
             composable(
                 route = "card/{nmId}",

@@ -64,8 +64,13 @@ dependencies {
 
     //Project modules
     implementation(project(":core:network:impl"))
+    implementation(project(":core:utils:secure:impl"))
+    implementation(project(":core:utils:secure:api"))
+
     implementation(project(":feature:cards:impl"))
     implementation(project(":feature:cards:api"))
+    implementation(project(":feature:auth:impl"))
+    implementation(project(":feature:auth:api"))
 
     implementation(project(":ui:main:impl"))
     implementation(project(":ui:card:impl"))
@@ -73,6 +78,10 @@ dependencies {
     implementation(project(":ui:main:api"))
     implementation(project(":ui:card:api"))
     implementation(project(":ui:cards:api"))
+
+    implementation(project(":ui:auth:impl"))
+    implementation(project(":ui:auth:api"))
+
 
     implementation(project(":base:ui"))
 

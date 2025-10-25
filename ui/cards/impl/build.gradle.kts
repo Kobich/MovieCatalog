@@ -40,6 +40,12 @@ dependencies {
     implementation(project(":feature:cards:api"))
     implementation(project(":base:ui"))
 
+    //Main
+    implementation(project(":ui:main:api"))
+    implementation(project(":ui:auth:api"))
+
+    implementation(project(":feature:auth:api"))
+
     //DI
     implementation(libs.koin.core)
     implementation(libs.koin.android)

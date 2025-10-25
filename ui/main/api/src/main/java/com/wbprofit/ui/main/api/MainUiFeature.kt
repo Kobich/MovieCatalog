@@ -4,5 +4,5 @@ import androidx.compose.runtime.Composable
 
 interface MainUiFeature {
     @Composable
-    fun Content()
+    fun Content(onLogout: () -> Unit)
 }

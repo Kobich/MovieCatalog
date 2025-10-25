@@ -1,9 +1,9 @@
 package com.moviecatalog.feature.cards
 
-import com.moviecatalog.BuildConfig
-import com.moviecatalog.feature.cards.api.CardsFeature
-import com.moviecatalog.feature.cards.impl.di.cardsFeatureModule
-import com.moviecatalog.core.network.impl.di.networkFeatureModule
+import com.wbprofit.BuildConfig
+import com.wbprofit.core.network.impl.di.networkFeatureModule
+import com.wbprofit.feature.cards.api.CardsFeature
+import com.wbprofit.feature.cards.impl.di.cardsFeatureModule
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

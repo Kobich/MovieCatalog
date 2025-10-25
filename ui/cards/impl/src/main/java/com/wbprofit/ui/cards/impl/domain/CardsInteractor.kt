@@ -3,6 +3,7 @@ package com.wbprofit.ui.cards.impl.domain
 import com.wbprofit.feature.cards.api.CardsFeature
 import com.wbprofit.ui.cards.impl.domain.entity.CardsScreenState
 import com.wbprofit.ui.cards.impl.domain.entity.CardsState
+import com.wbprofit.feature.auth.api.AuthFeature
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -13,17 +14,21 @@ import timber.log.Timber
 
 class CardsInteractor(
     private val cardsFeature: CardsFeature,
+    private val authFeature: AuthFeature,
 ) {
     private var job: Job? = null
     private val coroutineScope = CoroutineScope(
         SupervisorJob() + Dispatchers.Main,
     )
-
     val state: MutableStateFlow<CardsScreenState> =
         MutableStateFlow(CardsScreenState.Loading)
 
     fun init() {
         refresh()
+    }
+
+    suspend fun logout(){
+        authFeature.logout()
     }
 
     fun refresh() {

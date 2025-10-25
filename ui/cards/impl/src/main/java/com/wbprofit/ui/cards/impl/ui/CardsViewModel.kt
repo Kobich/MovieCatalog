@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class CardsViewModel(
     private val interactor: CardsInteractor,
@@ -29,6 +30,11 @@ class CardsViewModel(
 
     fun refresh() {
         interactor.refresh()
+    }
+    fun logout() {
+        viewModelScope.launch {
+            interactor.logout()
+        }
     }
 
     private fun CardsScreenState.map(): CardsScreenViewState = when (this) {
