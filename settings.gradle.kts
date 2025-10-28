@@ -40,3 +40,6 @@ include(":ui:auth:impl")
 //Base
 include(":base:ui")
 
+include(":core:keystore")
+include(":core:keystore:api")
+include(":core:keystore:impl")

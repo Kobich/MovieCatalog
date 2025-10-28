@@ -1,7 +1,7 @@
 package com.wbprofit.feature.auth.impl.data
 
-import com.wbprofit.core.utils.secure.api.SecureKeystoreStorage
-import com.wbprofit.core.utils.secure.api.SecureStorageKeys
+import com.wbprofit.core.keystore.api.KeystoreFeature
+import com.wbprofit.core.keystore.api.SecureStorageKeys
 import com.wbprofit.feature.auth.api.AuthVerificationResult
 import com.wbprofit.feature.auth.impl.data.network.AuthApi
 import com.wbprofit.feature.auth.impl.domain.AuthRepository
@@ -15,31 +15,18 @@ private const val DEFAULT_RETRY_AFTER_MILLIS = 30_000L
 
 internal class AuthRepositoryImpl(
     private val api: AuthApi,
-    private val rateLimiter: AuthRateLimiter,
-    private val secureStorage: SecureKeystoreStorage,
+    private val secureStorage: KeystoreFeature,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : AuthRepository {
 
     override suspend fun verifyToken(apiKey: String): AuthVerificationResult = withContext(dispatcher) {
-        val normalizedKey = apiKey.trim()
-        if (normalizedKey.isEmpty()) {
-            return@withContext AuthVerificationResult.Error(
-                cause = IllegalArgumentException("API key must not be blank"),
-            )
-        }
-
-        when (val result = rateLimiter.acquire()) {
-            is RateLimiterResult.Denied -> return@withContext AuthVerificationResult.RateLimited(result.retryAfterMillis)
-            RateLimiterResult.Allowed -> Unit
-        }
-
-        val response = runCatching { api.verifyToken(normalizedKey) }
+        val response = runCatching { api.verifyToken(apiKey) }
             .getOrElse { throwable ->
                 return@withContext AuthVerificationResult.Error(cause = throwable)
             }
 
         when {
-            response.isSuccessful -> handleSuccess(normalizedKey)
+            response.isSuccessful -> handleSuccess(apiKey)
             response.code() == 401 -> AuthVerificationResult.Unauthorized
             response.code() == 429 -> handleRateLimited(response)
             else -> AuthVerificationResult.Error(statusCode = response.code())
@@ -58,8 +45,7 @@ internal class AuthRepositoryImpl(
         return AuthVerificationResult.RateLimited(retryAfterMillis)
     }
 
-    override suspend fun logout() = withContext(dispatcher) {
+    override suspend fun logout(): Unit = withContext(dispatcher) {
         secureStorage.remove(SecureStorageKeys.API_KEY)
-        rateLimiter.reset()
     }
 }

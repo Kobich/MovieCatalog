@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.wbprofit.base.ui.theme.MovieCatalogTheme
-import com.wbprofit.core.utils.secure.api.SecureKeystoreStorage
-import com.wbprofit.core.utils.secure.api.SecureStorageKeys
+import com.wbprofit.core.keystore.api.KeystoreFeature
+import com.wbprofit.core.keystore.api.SecureStorageKeys
 import com.wbprofit.ui.auth.api.AuthNavRoute
 import com.wbprofit.ui.auth.api.AuthUiFeature
 import com.wbprofit.ui.main.api.MainNavRoute
@@ -20,7 +20,7 @@ import org.koin.android.ext.android.inject
 class MainActivity : ComponentActivity() {
     private val mainUiFeature by inject<MainUiFeature>()
     private val authUiFeature by inject<AuthUiFeature>()
-    private val secureStorage by inject<SecureKeystoreStorage>()
+    private val secureStorage by inject<KeystoreFeature>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

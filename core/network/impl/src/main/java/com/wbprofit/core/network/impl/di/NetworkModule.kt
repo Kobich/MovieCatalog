@@ -5,8 +5,6 @@ import com.wbprofit.core.network.impl.BuildConfig
 import com.wbprofit.core.network.impl.NetworkFeatureImpl
 import com.wbprofit.core.network.impl.data.MoshiHolder
 import com.wbprofit.core.network.impl.data.OkHttpHolder
-import com.wbprofit.core.utils.secure.api.SecureKeystoreStorage
-import com.wbprofit.core.utils.secure.api.SecureStorageKeys
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -23,11 +21,11 @@ val networkFeatureModule = module {
 
     // data
     single(named(BASE_URL)) { BuildConfig.WB_API_BASE_URL }
-    single<OkHttpHolder> {
-        val storage: SecureKeystoreStorage = get()
+    single { MoshiHolder() }
+    single {
         OkHttpHolder(
-            apiKeyProvider = { storage.read(SecureStorageKeys.API_KEY) ?: BuildConfig.WB_API_KEY },
+            secureStorage = get(),
+            defaultApiKey = BuildConfig.WB_API_KEY,
         )
     }
-    single<MoshiHolder> { MoshiHolder() }
 }

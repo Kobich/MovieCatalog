@@ -33,7 +33,7 @@ dependencies {
     implementation(project(":feature:auth:api"))
     implementation(project(":core:network:api"))
     implementation(project(":core:network:impl"))
-    implementation(project(":core:utils:secure:api"))
+    implementation(project(":core:keystore:api"))
 
     //Net
     implementation(libs.retrofit)

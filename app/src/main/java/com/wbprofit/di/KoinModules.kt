@@ -1,7 +1,7 @@
 package com.wbprofit.di
 
+import com.wbprofit.core.keystore.impl.di.keystoreModule
 import com.wbprofit.core.network.impl.di.networkFeatureModule
-import com.wbprofit.core.secure.impl.di.secureStorageModule
 import com.wbprofit.feature.auth.impl.di.authFeatureModule
 import com.wbprofit.feature.cards.impl.di.cardsFeatureModule
 import com.wbprofit.ui.auth.impl.di.authUiModule
@@ -14,7 +14,7 @@ val appModules: List<Module> = listOf(
 
     // Features
     networkFeatureModule,
-    secureStorageModule,
+    keystoreModule,
 
     authFeatureModule,
     cardsFeatureModule,

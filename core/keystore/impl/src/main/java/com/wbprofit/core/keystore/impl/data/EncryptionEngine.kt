@@ -1,4 +1,4 @@
-package com.wbprofit.core.secure.impl.data
+package com.wbprofit.core.keystore.impl.data
 
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties

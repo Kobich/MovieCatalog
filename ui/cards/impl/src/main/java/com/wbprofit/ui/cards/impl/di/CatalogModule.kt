@@ -11,5 +11,5 @@ val cardsModule = module {
     single<CardsUiFeature> { CardsUiFeatureImpl() }
 
     single { CardsInteractor(get(), get()) }
-    viewModel { CardsViewModel(interactor = get()) }
+    viewModel { CardsViewModel(interactor = get(), authFeature = get()) }
 }

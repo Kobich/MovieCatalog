@@ -82,6 +82,6 @@ dependencies {
 
     //Project
     implementation(project(":core:network:api"))
-    implementation(project(":core:utils:secure:api"))
+    implementation(project(":core:keystore:api"))
 
 }

@@ -64,8 +64,9 @@ dependencies {
 
     //Project modules
     implementation(project(":core:network:impl"))
-    implementation(project(":core:utils:secure:impl"))
-    implementation(project(":core:utils:secure:api"))
+
+    implementation(project(":core:keystore:api"))
+    implementation(project(":core:keystore:impl"))
 
     implementation(project(":feature:cards:impl"))
     implementation(project(":feature:cards:api"))

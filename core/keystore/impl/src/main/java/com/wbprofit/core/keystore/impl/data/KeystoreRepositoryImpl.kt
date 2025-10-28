@@ -1,21 +1,17 @@
-package com.wbprofit.core.secure.impl
+package com.wbprofit.core.keystore.impl.data
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.edit
-import com.wbprofit.core.secure.impl.data.EncryptedPayload
-import com.wbprofit.core.secure.impl.data.EncryptionEngine
-import com.wbprofit.core.utils.secure.api.SecureKeystoreStorage
+import com.wbprofit.core.keystore.impl.domain.KeystoreRepository
 
-internal class SecureKeystoreStorageImpl(
-    context: Context,
-    private val preferences: SharedPreferences = context.applicationContext.getSharedPreferences(
-        DEFAULT_STORAGE_FILE,
-        Context.MODE_PRIVATE,
-    ),
-    private val encryptionEngine: EncryptionEngine = EncryptionEngine(),
-) : SecureKeystoreStorage {
+private const val TAG = "KeystoreRepository"
+internal const val KEYSTORE_PREFERENCES_FILE = "wb_secure_storage"
+
+internal class KeystoreRepositoryImpl(
+    private val preferences: SharedPreferences,
+    private val encryptionEngine: EncryptionEngine,
+) : KeystoreRepository {
 
     override fun save(key: String, value: String): Boolean = runCatching {
         val payload = encryptionEngine.encrypt(value.toByteArray(Charsets.UTF_8))
@@ -30,7 +26,7 @@ internal class SecureKeystoreStorageImpl(
 
         val payload = EncryptedPayload.decode(serializedPayload) ?: run {
             Log.w(TAG, "Encrypted payload is corrupted for key: $key, removing entry")
-            remove(key)
+            preferences.edit { remove(key) }
             return null
         }
 
@@ -39,7 +35,7 @@ internal class SecureKeystoreStorageImpl(
             String(decryptedBytes, Charsets.UTF_8)
         }.onFailure { throwable ->
             Log.e(TAG, "Failed to decrypt secure value for key: $key", throwable)
-            remove(key)
+            preferences.edit { remove(key) }
         }.getOrNull()
     }
 
@@ -56,9 +52,4 @@ internal class SecureKeystoreStorageImpl(
     }
 
     override fun contains(key: String): Boolean = preferences.contains(key)
-
-    companion object {
-        private const val TAG = "SecureKeystoreStorage"
-        private const val DEFAULT_STORAGE_FILE = "wb_secure_storage"
-    }
 }

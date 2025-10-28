@@ -1,4 +1,4 @@
-package com.wbprofit.core.secure.impl.data
+package com.wbprofit.core.keystore.impl.data
 
 import android.util.Base64
 import java.nio.ByteBuffer

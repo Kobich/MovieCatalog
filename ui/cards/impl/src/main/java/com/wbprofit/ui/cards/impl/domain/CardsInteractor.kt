@@ -27,9 +27,6 @@ class CardsInteractor(
         refresh()
     }
 
-    suspend fun logout(){
-        authFeature.logout()
-    }
 
     fun refresh() {
         job?.cancel()
