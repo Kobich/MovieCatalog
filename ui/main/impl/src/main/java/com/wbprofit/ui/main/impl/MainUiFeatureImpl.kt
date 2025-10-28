@@ -11,10 +11,11 @@ internal class MainUiFeatureImpl(
     private val cardDetailsUiFeature: CardDetailsUiFeature,
 ) : MainUiFeature {
     @Composable
-    override fun Content() {
+    override fun Content(onLogout: () -> Unit) {
         MainScreen(
             cardsUiFeature = cardsUiFeature,
             cardDetailsUiFeature = cardDetailsUiFeature,
+            onLogout = onLogout,
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.wbprofit.ui.cards.impl.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -86,6 +88,15 @@ fun CardsContentView(
         modifier = Modifier
             .statusBarsPadding(),
     ) { innerPadding ->
+        Column {
+        Image(
+            painter = painterResource(id = R.drawable.logout_ic),
+            contentDescription = "Logout",
+            modifier = Modifier
+                .padding(innerPadding)
+                .size(36.dp)
+                .clickable { callbacks.onLogoutClick() },
+        )
         CardsCatalogList(
             items = cards,
             onClick = callbacks.onClick,
@@ -94,6 +105,7 @@ fun CardsContentView(
                 .fillMaxSize(),
         )
     }
+}
 }
 
 @Composable
@@ -160,6 +172,7 @@ fun PreviewRenderLoadingScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
+            onLogoutClick = {},
         ),
     )
 }
@@ -172,6 +185,7 @@ fun PreviewRenderErrorScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
+            onLogoutClick = {},
         ),
     )
 }
@@ -191,6 +205,7 @@ fun PreviewRenderMovieScreen() {
         callbacks = CardsCallbacks(
             onClick = {},
             onRefresh = {},
+            onLogoutClick = {},
         ),
     )
 }

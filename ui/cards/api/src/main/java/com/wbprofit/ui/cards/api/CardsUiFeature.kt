@@ -5,5 +5,8 @@ import androidx.navigation.NavHostController
 
 interface CardsUiFeature {
     @Composable
-    fun Content(navController: NavHostController)
+    fun Content(
+        navController: NavHostController,
+        onLogout: () -> Unit,
+    )
 }
