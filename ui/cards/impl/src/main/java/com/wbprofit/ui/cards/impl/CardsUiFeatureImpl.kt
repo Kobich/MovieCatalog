@@ -7,7 +7,13 @@ import com.wbprofit.ui.cards.impl.ui.CardsScreen
 
 internal class CardsUiFeatureImpl : CardsUiFeature {
     @Composable
-    override fun Content(navController: NavHostController) {
-        CardsScreen(navController)
+    override fun Content(
+        navController: NavHostController,
+        onLogout: () -> Unit,
+    ) {
+        CardsScreen(
+            navController = navController,
+            onLogout = onLogout,
+        )
     }
 }
