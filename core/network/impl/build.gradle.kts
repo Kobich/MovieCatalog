@@ -20,6 +20,8 @@ val wbTestApiBaseUrl =
 val wbApiKey = localProperties.getProperty("WB_API_KEY") ?: ""
 val wbApiBaseUrl =
     localProperties.getProperty("WB_API_BASE_URL") ?: "https://content-api.wildberries.ru/"
+val wbAnalyticsApiBaseUrl =
+    localProperties.getProperty("WB_ANALYTICS_API_BASE_URL") ?: "https://statistics-api.wildberries.ru/"
 
 android {
     namespace = "com.wbprofit.core.network.impl"
@@ -32,6 +34,7 @@ android {
         buildConfigField("String", "WB_TEST_API_BASE_URL", "\"$wbTestApiBaseUrl\"")
         buildConfigField("String", "WB_API_KEY", "\"$wbApiKey\"")
         buildConfigField("String", "WB_API_BASE_URL", "\"$wbApiBaseUrl\"")
+        buildConfigField("String", "WB_ANALYTICS_API_BASE_URL", "\"$wbAnalyticsApiBaseUrl\"")
     }
 
     buildTypes {
