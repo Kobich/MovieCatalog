@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.wbprofit.ui.main.impl"
+    namespace = "com.wbprofit.ui.analytics.impl"
     compileSdk = 36
 
     defaultConfig {
@@ -24,7 +24,6 @@ android {
     buildFeatures {
         compose = true
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,23 +35,29 @@ android {
 
 dependencies {
 
-    implementation(project(":base:ui"))
-    implementation(project(":ui:main:api"))
-    implementation(project(":ui:card:api"))
-    implementation(project(":ui:cards:api"))
+    // project
     implementation(project(":ui:analytics:api"))
+    implementation(project(":feature:analytics:api"))
+    implementation(project(":base:ui"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.compose.runtime)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
+    //DI
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    //Compose
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.navigation.runtime.ktx)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+
+    implementation(libs.coil.compose)
+    debugImplementation(libs.androidx.ui.tooling)
+
+    implementation(libs.timber)
 }
